@@ -1,0 +1,21 @@
+sales_order,customer,net_value,currency,requested_delivery_date,overall_delivery_status,delivery_block,credit_block
+DEMO-1001,Alpine Bikes Demo,12000,EUR,2026-10-30,Open,false,true
+DEMO-1002,Blue River Retail Demo,18000,EUR,2026-10-25,Open,YES,no
+DEMO-1003,Contoso Outdoor Demo,24000,USD,2026-11-05,Open,1,TRUE
+DEMO-1004,Delta Home Demo,9000,EUR,2026-10-01,Partially Delivered,0,0
+DEMO-1005,Evergreen Sports Demo,15000,EUR,2026-10-12,Open,false,false
+DEMO-1006,Fabrikam Cycles Demo,50000,USD,2026-11-01,Open,no,no
+DEMO-1007,Golden Trail Demo,75000,EUR,2026-09-20,Complete,false,false
+DEMO-1008,Highland Gear Demo,8000,EUR,2026-12-15,Open,false,false
+DEMO-1009,Ironwood Mobility Demo,60000,EUR,2026-10-05,Open,true,true
+DEMO-1010,Juniper Retail Demo,45000,USD,2026-10-06,Open,false,true
+DEMO-1011,Keystone Cycles Demo,52000,EUR,2026-10-08,Open,true,false
+DEMO-1012,Lakeside Sports Demo,30000,GBP,2026-10-09,Open,false,false
+DEMO-1013,Metro Outdoor Demo,70000,USD,2026-09-30,Partially Delivered,no,no
+DEMO-1014,Northstar Bikes Demo,10000,EUR,2026-10-14,Open,yes,no
+DEMO-1015,Oak Valley Retail Demo,90000,GBP,2026-10-20,Open,no,yes
+DEMO-1016,Pioneer Gear Demo,25000,USD,2026-09-15,Complete,no,yes
+DEMO-1017,Quartz Sports Demo,50000,EUR,2026-10-07,Open,no,no
+DEMO-1018,Riverbend Cycles Demo,49999,USD,2026-10-15,Open,no,no
+DEMO-1019,Summit Mobility Demo,125000,EUR,2026-09-10,Partially Delivered,yes,yes
+DEMO-1020,Timberline Retail Demo,5000,GBP,2026-10-13,Open,0,0

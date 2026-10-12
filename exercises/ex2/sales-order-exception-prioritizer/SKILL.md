@@ -1,0 +1,24 @@
+---
+name: sales-order-exception-prioritizer
+description: Rank open sales order exceptions using deterministic risk rules
+---
+
+## Instructions
+
+Use this skill for read-only prioritization of open sales-order exceptions from authorized tabular data. Do not change any business data.
+
+1. Confirm the analysis date in `YYYY-MM-DD` format and confirm that the request is read-only. Never substitute the system date.
+2. Define the live retrieval scope as authorized orders with incomplete delivery and a requested delivery date from 30 days before through 7 days after the analysis date. Apply this scope in SAP S/4HANA before limiting records.
+3. If no CSV or compatible tabular data is present, ask Joule to use an available SAP-published skill for SAP S/4HANA to count the orders matching that scope before retrieving order data. This custom skill cannot connect directly to SAP S/4HANA because it has no external network connectivity.
+4. State the matching count in one short message. If the count is greater than 50, state that this workshop run will analyze only 50 matching orders. Do not ask for confirmation and do not fetch additional pages.
+5. Retrieve at most 50 matching orders. Sort by `requested_delivery_date` descending and then `sales_order` ascending in SAP S/4HANA before applying the limit. Retrieve: `sales_order`, `customer`, `net_value`, `currency`, `requested_delivery_date`, `overall_delivery_status`, an explicit delivery-block indicator or reason, `TotalCreditCheckStatus`, the text or description from the `TotalCreditCheckStatus` code list, and `TotalBlockStatus`. Never retrieve an arbitrary first page and sort or filter it only after retrieval.
+6. If the SAP-published capability cannot count, filter, sort, and limit before retrieval, explain that the live path cannot provide a reliable bounded sample and ask the user to provide a CSV. For the workshop fallback, use `sample-data/open-sales-orders.csv`. Never invent S/4HANA data.
+7. Validate every required value. Normalize an explicit delivery-block indicator from `true`, `false`, `yes`, `no`, `1`, or `0`; if only a delivery-block reason is available, map a nonempty reason to `true` and an empty reason to `false`.
+8. Never infer credit blockage from a raw `TotalCreditCheckStatus` code alone. Do not use general SAP knowledge, a different field such as legacy `CMGST`, or the fact that a value is nonempty to interpret the code. Retrieve the code-list text for the exact `TotalCreditCheckStatus` object-node value in the current tenant. Map `credit_block` to `true` only when that text unambiguously means blocked, not approved, or document not OK. Map it to `false` only when the text unambiguously means approved, released, not relevant, or document OK. Treat every other value as `unknown`.
+9. Use `TotalBlockStatus` only as a consistency check because it can include delivery, billing, and credit blocks. An empty overall block status can support a `credit_block = false` interpretation but cannot identify which component is blocked when nonempty. If the code-list text and overall block status conflict, keep `credit_block = unknown` and report the conflict. Do not ask the user to choose a meaning.
+10. Exclude rows with `credit_block = unknown` from credit-block points, but continue scoring their other verified conditions. Preserve the raw credit code and text in the output, mark the credit status as unknown, and state how many rows were not awarded credit-block points because the mapping was unresolved.
+11. For an uploaded workshop CSV whose `credit_block` column already contains only supported boolean representations, use it directly. Save validated data as CSV in the sandbox workspace and run `scripts/prioritize_orders.py INPUT.csv --as-of YYYY-MM-DD --output OUTPUT.csv`, replacing the placeholders with workspace paths and the confirmed date.
+12. If the script reports a validation error, identify the affected row and field and ask for corrected data.
+13. Present the 10 highest-ranked rows as a Markdown action table with these columns: Order, Customer, Date, Value, Priority, Score, Reasons, Credit Status, and Suggested Follow-up. Preserve each currency and do not convert values. Base the suggested follow-up only on verified reasons. Make the full ranked CSV available when file output is supported.
+14. State the count matching the live scope, the number analyzed, totals for Critical, High, Medium, and Low within the analyzed sample, the number of unknown credit statuses, and the analysis date. If the matching count exceeded 50, state that the result is a bounded sample and not a ranking of every matching order. End with: `No SAP business data was changed.`
+15. Treat the result as decision support. Do not expose fields beyond those requested, provide write-back instructions, or claim that the analysis changed S/4HANA.
