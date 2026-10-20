@@ -2,22 +2,41 @@
 
 ## Workshop purpose
 
-JW260 is a hands-on SAP TechEd 2026 session about building custom skills for Joule Work. Participants complete three progressive exercises:
+JW260 is a hands-on SAP TechEd 2026 session about building custom skills for Joule Work. Participants complete one readiness exercise followed by three progressive technical exercises:
 
+0. Sign in, set up the workshop files, and verify readiness.
 1. Compare a deliberately flawed skill with a recommended skill.
 2. Build and test a validated gross-margin calculation skill.
 3. Prioritize synthetic sales-order exceptions with deterministic, read-only rules.
 
 Complete the exercises in order. Later exercises build on the metadata, validation, supporting-file, and safety concepts introduced earlier.
 
-## Getting started
+## Exercise 0 - Log In, Set Up, and Get Ready
+
+Location: `exercises/ex0/`
+
+Goal: sign in with the facilitator-assigned workshop identity, confirm Joule Work access, prepare the repository files, understand the required ZIP structure, and verify the import path before beginning the technical exercises.
 
 Participants need:
 
+- The workshop tenant URL and workshop identity supplied by the facilitator.
 - Joule Work access with agentic thinking mode available.
 - Access to **User menu > Explore Skills**.
 - Permission to import and enable a custom skill, or access to facilitator-preimported skills.
 - A browser that can upload ZIP and CSV files.
+- This repository, downloaded or cloned locally.
+
+Readiness flow:
+
+1. Open the facilitator-supplied tenant URL and sign in with the assigned identity.
+2. Confirm that Joule Work opens.
+3. Open **User menu > Explore Skills > My Skills**.
+4. Confirm that **Import** is available, or use facilitator-preimported skills.
+5. Confirm that agentic thinking mode is available.
+6. Confirm that `exercises/ex0/` through `exercises/ex3/` are present locally.
+7. Review the required top-level-folder ZIP structure.
+
+Never put tenant URLs, usernames, passwords, authentication screenshots, or personal data in repository files or workshop prompts. If sign-in or required controls are unavailable, show the visible error or UI to the facilitator rather than bypassing permissions.
 
 To import a custom skill:
 
@@ -38,7 +57,7 @@ workshop-greeter.zip
 
 ## Exercise 1 - Compare Skill Behavior
 
-Location: `exercises/ex0/`
+Location: `exercises/ex1/`
 
 Skills:
 
@@ -68,7 +87,7 @@ Routing is probabilistic. If provenance is unavailable, record `Not visible` and
 
 ## Exercise 2 - Gross Margin Calculator
 
-Location: `exercises/ex1/`
+Location: `exercises/ex2/`
 
 Skill: `gross-margin-calculator`
 
@@ -99,11 +118,11 @@ If bundled script execution is unavailable, use the rules in `references/formula
 
 ## Exercise 3 - Sales Order Exception Prioritizer
 
-Location: `exercises/ex2/`
+Location: `exercises/ex3/`
 
 Skill: `sales-order-exception-prioritizer`
 
-Synthetic fixture: `exercises/ex2/sample-data/open-sales-orders.csv`
+Synthetic fixture: `exercises/ex3/sample-data/open-sales-orders.csv`
 
 Live prompt:
 

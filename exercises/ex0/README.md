@@ -1,94 +1,72 @@
-# Level 1: Compare Skill Behavior
+# Exercise 0: Log In, Set Up, and Get Ready
 
 ## Goal
 
-Observe how skill descriptions and instructions affect routing and response reliability, then improve a flawed skill using evidence from Joule Work.
+Sign in to the workshop environment, prepare the repository files, and confirm that Joule Work is ready before starting the technical exercises.
 
-> [!warning] Teaching anti-pattern
-> `broad-greeter` is an intentionally poor example created for this exercise. Do not copy it into production skills.
+## What You Need
 
-<!-- TEACHING ANTI-PATTERN: broad-greeter intentionally creates routing overlap. -->
-<!-- TEACHING ANTI-PATTERN: broad-greeter intentionally leaves output behavior underspecified and inconsistent. -->
+- The workshop tenant URL supplied by your facilitator.
+- The workshop identity assigned to you by your facilitator.
+- This repository, downloaded or cloned to your computer.
 
-## Timebox: 18 minutes
 
-- Observe: 6 minutes
-- Diagnose: 4 minutes
-- Improve: 4 minutes
-- Retest: 4 minutes
+## Step 1: Sign In
 
-## Before You Start
+1. Open the workshop tenant URL supplied by your facilitator.
+2. Sign in with your assigned workshop identity.
+3. Complete the authentication process if prompted.
+4. Confirm that Joule Work opens successfully.
 
-Create one ZIP for each top-level folder:
+If sign-in fails, stop and contact the facilitator. Do not use another participant's identity.
 
-- `broad-greeter`
-- `workshop-greeter`
+## Step 2: Check Joule Work Access
 
-Each archive must contain its named folder and that folder's `SKILL.md`. In Joule Work, use **Explore Skills > Import** to import both ZIPs, enable both skills on **My Skills**, and select agentic thinking mode.
+1. Open **User menu > Explore Skills**.
+2. Confirm that you can open **My Skills**.
+3. Look for the **Import** control.
+   - If it is available, you will import the exercise skills yourself.
+4. Confirm that agentic thinking mode is available. You will select it when testing skills in the exercises.
 
-## Observe - 6 Minutes
 
-Run each exact prompt twice with both skills enabled:
+## Step 3: Prepare the Workshop Files
 
-1. `Welcome me to the Joule Work skills workshop. My name is NAME.`
-2. `Hello, I am NAME. Tell me what I will learn in the Joule Work skills workshop.`
-3. `Help me get started with the Joule Work skills workshop.`
+1. Download or clone this repository.
+2. Open the repository and locate the `exercises` folder.
+3. Confirm that it contains `ex0`, `ex1`, `ex2`, and `ex3`.
+4. Open `exercises/ex1/` and confirm that both `broad-greeter/` and `workshop-greeter/` contain a `SKILL.md` file.
 
-After every run, record the routed skill shown by Joule and the visible response qualities. If your tenant does not expose the selected skill, enter `Not visible` and base the comparison on the response only.
+## Step 4: Understand the ZIP Structure
 
-### Observation Matrix
+Each imported skill must be packaged as a ZIP containing the complete top-level skill folder, not only the files inside it.
 
-| Phase | Prompt | Run | Skill routed | Name used correctly | Three learning levels | Exact closing sentence | Concise and consistent | Other evidence |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| All enabled | Welcome Priya | 1 |  |  |  |  |  |  |
-| All enabled | Welcome Priya | 2 |  |  |  |  |  |  |
-| All enabled | Mateo learning request | 1 |  |  |  |  |  |  |
-| All enabled | Mateo learning request | 2 |  |  |  |  |  |  |
-| All enabled | Getting started | 1 |  |  |  |  |  |  |
-| All enabled | Getting started | 2 |  |  |  |  |  |  |
-| Good only | Welcome Priya | 1 |  |  |  |  |  |  |
-| Good only | Mateo learning request | 1 |  |  |  |  |  |  |
-| Good only | Getting started | 1 |  |  |  |  |  |  |
-| Improved skill | Assigned prompt | 1 |  |  |  |  |  |  |
-| Improved skill | Assigned prompt | 2 |  |  |  |  |  |  |
+Correct:
 
-The required closing sentence for comparison is: `Start with the smallest reliable skill, then add complexity one controlled step at a time.`
+```text
+workshop-greeter.zip
+└── workshop-greeter/
+    └── SKILL.md
+```
 
-> [!note] Selection is not deterministic
-> Skill selection can vary between runs, tenants, and surrounding conversation. A flawed skill is not guaranteed to fail on every prompt. Your evidence is the behavior observed across repeated prompts, not a promised routing result or guaranteed failure.
+Incorrect:
 
-## Diagnose - 4 Minutes
+```text
+workshop-greeter.zip
+└── SKILL.md
+```
 
-Open both `SKILL.md` files and compare them with your observations.
 
-- Identify description words that overlap with unrelated requests or with another skill.
-- Identify instructions that leave the number, content, order, length, or closing of the response undefined.
-- For each observed difference, cite one metadata or instruction line that could explain it.
-- Decide whether your strongest evidence concerns routing, output reliability, or both.
+## Readiness Check
 
-## Improve - 4 Minutes
+Before continuing, confirm all applicable items:
 
-Improve `broad-greeter`.
+- [ ] I can sign in to the workshop tenant with my assigned identity.
+- [ ] Joule Work opens successfully.
+- [ ] I can open **User menu > Explore Skills > My Skills**.
+- [ ] I can import skills, or the facilitator has confirmed the preimported-skill fallback.
+- [ ] Agentic thinking mode is available.
+- [ ] I have the repository and can locate all four exercise folders.
+- [ ] I understand the required ZIP folder structure.
 
-Narrow its `description` and instructions to one distinct greeting use case that does not overlap with `workshop-greeter`. Add one explicit negative boundary. Define a reliable output contract covering name behavior, the exact number and content of learning items, maximum length, and closing sentence. Keep the folder name and metadata name unchanged.
 
-Rebuild and re-import the `broad-greeter` ZIP, then enable it.
-
-## Retest - 4 Minutes
-
-1. Disable `broad-greeter` so only `workshop-greeter` remains enabled.
-2. Run each of the three exact prompts once and complete the `Good only` rows.
-3. Compare these results with the `All enabled` rows. Note what changed in routing and response qualities.
-4. Disable `workshop-greeter` and enable only your improved `broad-greeter` skill.
-5. Run the prompt most relevant to your change twice and complete the two `Improved skill` rows.
-6. State one evidence-based improvement and one remaining uncertainty.
-
-## Success Criteria
-
-You have observed repeated behavior with competing skills, linked evidence to metadata or instructions, isolated the good skill for comparison, improved the flawed skill, and retested the change without treating routing as deterministic.
-
-## Summary
-
-You compared intentionally flawed and recommended skill designs, connected observed behavior to metadata and instructions, improved one skill, and retested it with the same prompts.
-
-Continue to - [Exercise 2 - Gross Margin Calculator](../ex1/README.md)
+Continue to - [Exercise 1: Compare Skill Behavior](../ex1/README.md)

@@ -1,43 +1,94 @@
-# Level 2: Gross Margin Calculator
+# Exercise 1: Compare Skill Behavior
 
 ## Goal
 
-Add required-input collection, validation, deterministic arithmetic, edge-case handling, and a supporting reference file.
+Observe how skill descriptions and instructions affect routing and response reliability, then improve a flawed skill using evidence from Joule Work.
 
-## Base prompt
+> [!warning] Teaching anti-pattern
+> `broad-greeter` is an intentionally poor example created for this exercise. Do not copy it into production skills.
 
-`Calculate gross margin for revenue 125000 EUR and cost 87500 EUR.`
+<!-- TEACHING ANTI-PATTERN: broad-greeter intentionally creates routing overlap. -->
+<!-- TEACHING ANTI-PATTERN: broad-greeter intentionally leaves output behavior underspecified and inconsistent. -->
 
-Expected result:
+## Timebox: 18 minutes
 
-- Inputs: revenue 125000 EUR; cost 87500 EUR
-- Gross Profit: 37500.00 EUR
-- Gross Margin: 30.00%
-- Warning: None
+- Observe: 6 minutes
+- Diagnose: 4 minutes
+- Improve: 4 minutes
+- Retest: 4 minutes
 
-## Clarification and edge prompts
+## Before You Start
 
-- `Calculate gross margin for revenue 125000 EUR.` Expected: ask for cost and do not invent it.
-- `Calculate gross margin for revenue 0 and cost 500 EUR.` Expected: gross profit -500.00 EUR, undefined gross margin, and a zero-revenue warning.
-- `Calculate gross margin for revenue -10 EUR and cost 5 EUR.` Expected: reject negative revenue.
-- `Calculate gross margin for revenue 100 USD and cost 60 EUR.` Expected: do not convert currency; ask for values in one currency.
+Create one ZIP for each top-level folder:
 
-## Participant steps
+- `broad-greeter`
+- `workshop-greeter`
 
-1. Inspect `SKILL.md`, `references/formulas.md`, and `scripts/calculate_margin.py`.
-2. ZIP the top-level `gross-margin-calculator` folder.
-3. Import and enable the package in Joule Work.
-4. Select agentic thinking mode and run the base prompt.
-5. Compare the result with the expected values.
-6. Run every clarification and edge prompt and record the behavior.
-7. If Python execution is unavailable, confirm that the skill uses and discloses the formula fallback.
+Each archive must contain its named folder and that folder's `SKILL.md`. In Joule Work, use **Explore Skills > Import** to import both ZIPs, enable both skills on **My Skills**, and select agentic thinking mode.
 
-## Extension: target margin
+## Observe - 6 Minutes
 
-Add a target-margin input and use the reference formula to calculate required revenue at the current cost. Validate that the target is below 100 percent, keep decimal half-up rounding, and label the extension result separately from the base output.
+Run each exact prompt twice with both skills enabled:
+
+1. `Welcome me to the Joule Work skills workshop. My name is NAME.`
+2. `Hello, I am NAME. Tell me what I will learn in the Joule Work skills workshop.`
+3. `Help me get started with the Joule Work skills workshop.`
+
+After every run, record the routed skill shown by Joule and the visible response qualities. If your tenant does not expose the selected skill, enter `Not visible` and base the comparison on the response only.
+
+### Observation Matrix
+
+| Phase | Prompt | Run | Skill routed | Name used correctly | Three learning levels | Exact closing sentence | Concise and consistent | Other evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| All enabled | Welcome Priya | 1 |  |  |  |  |  |  |
+| All enabled | Welcome Priya | 2 |  |  |  |  |  |  |
+| All enabled | Mateo learning request | 1 |  |  |  |  |  |  |
+| All enabled | Mateo learning request | 2 |  |  |  |  |  |  |
+| All enabled | Getting started | 1 |  |  |  |  |  |  |
+| All enabled | Getting started | 2 |  |  |  |  |  |  |
+| Good only | Welcome Priya | 1 |  |  |  |  |  |  |
+| Good only | Mateo learning request | 1 |  |  |  |  |  |  |
+| Good only | Getting started | 1 |  |  |  |  |  |  |
+| Improved skill | Assigned prompt | 1 |  |  |  |  |  |  |
+| Improved skill | Assigned prompt | 2 |  |  |  |  |  |  |
+
+The required closing sentence for comparison is: `Start with the smallest reliable skill, then add complexity one controlled step at a time.`
+
+> [!note] Selection is not deterministic
+> Skill selection can vary between runs, tenants, and surrounding conversation. A flawed skill is not guaranteed to fail on every prompt. Your evidence is the behavior observed across repeated prompts, not a promised routing result or guaranteed failure.
+
+## Diagnose - 4 Minutes
+
+Open both `SKILL.md` files and compare them with your observations.
+
+- Identify description words that overlap with unrelated requests or with another skill.
+- Identify instructions that leave the number, content, order, length, or closing of the response undefined.
+- For each observed difference, cite one metadata or instruction line that could explain it.
+- Decide whether your strongest evidence concerns routing, output reliability, or both.
+
+## Improve - 4 Minutes
+
+Improve `broad-greeter`.
+
+Narrow its `description` and instructions to one distinct greeting use case that does not overlap with `workshop-greeter`. Add one explicit negative boundary. Define a reliable output contract covering name behavior, the exact number and content of learning items, maximum length, and closing sentence. Keep the folder name and metadata name unchanged.
+
+Rebuild and re-import the `broad-greeter` ZIP, then enable it.
+
+## Retest - 4 Minutes
+
+1. Disable `broad-greeter` so only `workshop-greeter` remains enabled.
+2. Run each of the three exact prompts once and complete the `Good only` rows.
+3. Compare these results with the `All enabled` rows. Note what changed in routing and response qualities.
+4. Disable `workshop-greeter` and enable only your improved `broad-greeter` skill.
+5. Run the prompt most relevant to your change twice and complete the two `Improved skill` rows.
+6. State one evidence-based improvement and one remaining uncertainty.
+
+## Success Criteria
+
+You have observed repeated behavior with competing skills, linked evidence to metadata or instructions, isolated the good skill for comparison, improved the flawed skill, and retested the change without treating routing as deterministic.
 
 ## Summary
 
-You created a skill with a complete input and output contract, deterministic calculation, validation, rounding, and fallback behavior.
+You compared intentionally flawed and recommended skill designs, connected observed behavior to metadata and instructions, improved one skill, and retested it with the same prompts.
 
-Continue to - [Exercise 3 - Sales Order Exception Prioritizer](../ex2/README.md)
+Continue to - [Exercise 2 - Gross Margin Calculator](../ex2/README.md)

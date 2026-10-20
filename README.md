@@ -24,15 +24,27 @@ After completing the exercises, you will be able to:
 - A browser that can upload ZIP and CSV files.
 - No credentials, tenant URLs, personal data, production identifiers, or real customer records in workshop files.
 
+## Before You Start
+
+1. Open the workshop tenant URL supplied by your facilitator.
+2. Sign in with your assigned workshop identity.
+3. Confirm that you can access **User menu > Explore Skills**.
+4. Download or clone this repository.
+5. Complete [Exercise 0 - Log In, Set Up, and Get Ready](exercises/ex0/) before beginning the technical exercises.
+
+
 ## Exercises
 
-- [Getting Started and Exercise 1 - Compare Skill Behavior](exercises/ex0/)
+- [Exercise 0 - Log In, Set Up, and Get Ready](exercises/ex0/)
+  - Sign in with the assigned workshop identity.
+  - Verify access, import options, files, and ZIP structure.
+- [Exercise 1 - Compare Skill Behavior](exercises/ex1/)
   - Compare intentionally flawed skills with a recommended skill.
   - Improve one skill and retest the same prompts.
-- [Exercise 2 - Gross Margin Calculator](exercises/ex1/)
+- [Exercise 2 - Gross Margin Calculator](exercises/ex2/)
   - Validate inputs and perform deterministic calculations.
   - Handle missing, invalid, and zero-revenue cases.
-- [Exercise 3 - Sales Order Exception Prioritizer](exercises/ex2/)
+- [Exercise 3 - Sales Order Exception Prioritizer](exercises/ex3/)
   - Analyze supplied synthetic sales-order data.
   - Apply deterministic read-only prioritization rules.
 
@@ -42,7 +54,8 @@ Complete the exercises in order. Later exercises build on the metadata, validati
 
 The repository also includes the optional [`jw260-workshop-guide`](skills/jw260-workshop-guide/) support skill. It is not a separate exercise. Import and enable it if you want to ask Joule questions such as:
 
-- `What are the three JW260 exercises?`
+- `What are the four JW260 exercises?`
+- `Help me get ready with Exercise 0.`
 - `Help me get started with Exercise 2.`
 - `Why is my skill ZIP rejected?`
 - `What should I check when a skill is not selected?`
