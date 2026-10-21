@@ -2,11 +2,11 @@
 
 ## Goal
 
-Choose one defined SAP S/4HANA, SAP SuccessFactors, or SAP Ariba outcome, create the custom skill manually or with Joule, and verify the generated business document against the expected output.
+Choose one defined SAP S/4HANA or SAP SuccessFactors outcome, create the custom skill manually or with Joule, and verify the generated business document against the expected output.
 
 ## Choose one scenario
 
-Complete one of the following three scenarios. The business outcome and output format are fixed; you design the skill that achieves them.
+Complete one of the following two currently supported scenarios. The business outcome and output format are fixed; you design the skill that achieves them.
 
 The exact SAP-published skill names can differ by workshop tenant. Before starting, confirm in **Explore Skills** that your chosen scenario has an available capability and that your workshop identity can access the required data. A custom skill cannot connect directly to an SAP backend; an available SAP-published skill retrieves authorized data and the custom skill prepares the report.
 
@@ -24,7 +24,9 @@ Before building or running your custom skill, open **Explore Skills** and enable
 | --- | --- | --- |
 | SAP S/4HANA purchase-order report | The facilitator-confirmed `s4hana-public-cloud` or `s4hana-private-cloud` skill | `xlsx` |
 | SAP SuccessFactors benefit-plan country report | `successfactors-hr` | `docx` |
-| SAP Ariba requisition review | The facilitator-confirmed SAP Ariba skill | `pptx` |
+<!-- SAP Ariba Buying option temporarily disabled because the live composed use case could not be qualified reliably.
+| SAP Ariba Buying requisition-item review | The facilitator-confirmed SAP Ariba Buying skill | `pptx` |
+-->
 
 Use the exact skill names shown in the workshop catalog. Confirm that each required toggle is on and that both skills appear under **Active Skills**. If the required business or output skill is missing, stop and ask the facilitator which option is supported; enabling only your custom skill is not sufficient.
 
@@ -102,44 +104,50 @@ Open `benefit-plans-<country-slug>.docx` and confirm:
 - no personal enrollment, compensation, unsupported employee information, or plans outside the requested country appear;
 - no SuccessFactors data was created or changed.
 
-## Option C: SAP Ariba — Requisition Review PowerPoint
+<!-- SAP Ariba Buying option temporarily disabled because the live composed use case could not be qualified reliably.
+
+## Option C: SAP Ariba Buying — Requisition Item Review PowerPoint
 
 ### Target outcome
 
 Create a custom skill that asks for these filters:
 
-- requisition submission date range;
-- minimum total value;
-- currency;
-- requester, or `all authorized requesters`;
-- requisition status.
+- plant code, or `all authorized plants`;
+- fixed vendor code, or `all authorized vendors`;
+- requisition-item delivery-date range;
+- report date.
 
-The skill uses an available SAP Ariba capability to retrieve matching requisitions and creates `requisition-review.pptx`.
+The skill uses the available SAP Ariba Buying capability to retrieve authorized purchase requisition items and creates `requisition-item-review.pptx`. The observed Buying result returns item-level data, so preserve the purchase requisition number and item number separately. Do not substitute SAP Ariba Sourcing.
+
+Make exactly one Buying request and retrieve at most 20 items. Use only fields returned by the capability: purchase requisition and item number, description, quantity and unit, price and currency, price basis, purchasing group, plant, fixed vendor, purchasing organization, and delivery date. On an authorization, connection, timeout, partial, truncated, or unavailable-field result, do not retry or switch services; report the first error and stop.
 
 The presentation must contain exactly five slides:
 
-1. `Requisition Review` — title and applied date range.
-2. `Scope and Filters` — all filters used and the report date.
-3. `Summary` — number of matching requisitions and total value by currency.
-4. `Highest-Value Requisitions` — up to five requisitions sorted by value descending, showing requisition ID, requester, value, currency, submission date, and status.
+1. `Purchase Requisition Item Review` — title, applied delivery-date range, and report date.
+2. `Scope and Filters` — plant, fixed vendor, delivery-date range, analyzed-item count, and the 20-item limit.
+3. `Item Summary` — analyzed-item count, sums of returned item prices grouped by currency, and counts by plant and fixed vendor. Do not describe item-price sums as requisition totals.
+4. `Upcoming Requisition Items` — up to five items sorted by delivery date ascending, then requisition number and item number ascending. Show requisition and item number, description, quantity and unit, price and currency, plant, fixed vendor, and delivery date.
 5. `Review Points` — factual observations and items requiring human review; no approval recommendation may be presented as an automated decision.
 
 ### Verify the output
 
-Open `requisition-review.pptx` and confirm:
+Open `requisition-item-review.pptx` and confirm:
 
 - it contains exactly five slides with the required titles and order;
 - the scope slide contains every filter from the request;
 - the summary agrees with the retrieved data;
-- slide 4 contains no more than five requisitions and uses the required sort order and fields;
+- slide 4 contains no more than five requisition items and uses the required sort order and fields;
 - observations are supported by the retrieved data;
 - currencies remain separate and are not converted;
+- requisition numbers and item numbers, including leading zeros, are preserved separately;
 - no requisition was created, changed, submitted, or approved.
+
+-->
 
 ## Build and run your skill
 
-1. Choose Option A, B, or C.
-2. In **Explore Skills**, enable the required business skill and `xlsx`, `docx`, or `pptx` output skill shown in the table above. Confirm that both appear under **Active Skills**.
+1. Choose Option A or B.
+2. In **Explore Skills**, enable the required business skill and `xlsx` or `docx` output skill shown in the table above. Confirm that both appear under **Active Skills**.
 3. Create a lowercase, hyphenated skill folder containing `SKILL.md`.
 4. Build the skill manually or ask Joule to help draft it.
 5. Ensure the skill defines its purpose, required filters, retrieval handoff, validation, exact output structure, sorting, missing-data behavior, and read-only boundary.
@@ -154,6 +162,9 @@ Open `requisition-review.pptx` and confirm:
 | Problem | Action |
 | --- | --- |
 | The required SAP-published capability is unavailable | Choose another option or ask the facilitator which scenario is supported by the tenant. |
+<!-- SAP Ariba troubleshooting is temporarily disabled with Option C.
+| SAP Ariba Sourcing is unavailable but SAP Ariba Buying works | Use Option C's Buying requisition-item outcome; do not substitute or probe Sourcing. |
+-->
 | The `xlsx`, `docx`, or `pptx` skill is disabled | Enable the output skill for your option under **Explore Skills**, then confirm it appears under **Active Skills**. |
 | A required field cannot be retrieved | Do not invent it. Ask the facilitator whether another option is supported. |
 | Retrieved data cannot be handed to the custom skill | State the limitation and use facilitator-approved synthetic data if available. |

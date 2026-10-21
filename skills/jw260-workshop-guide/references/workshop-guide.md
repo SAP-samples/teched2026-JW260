@@ -154,13 +154,13 @@ The custom skill cannot connect directly to SAP S/4HANA. A tenant-confirmed SAP-
 
 Location: `exercises/ex4/`
 
-Goal: choose one predefined SAP S/4HANA, SAP SuccessFactors, or SAP Ariba outcome, build the custom skill manually or with Joule, and verify its generated report against the fixed output contract.
+Goal: choose one predefined SAP S/4HANA or SAP SuccessFactors outcome, build the custom skill manually or with Joule, and verify its generated report against the fixed output contract.
 
 Agentic Thinking may complete a similar one-off request without a custom skill. The learning objective is to turn that ad hoc behavior into a reusable business procedure with consistent required inputs, safety boundaries, retrieval limits, filenames, and output structures. The SAP-published skill retrieves authorized data, the Office output skill creates the artifact, and the participant's custom skill defines how those capabilities are combined.
 
-The S/4HANA option produces a filtered purchase-order Excel workbook, the SuccessFactors option produces a country-specific benefit-plan report in Word, and the Ariba option produces a five-slide requisition review PowerPoint. Each option defines required filters, report structure, sorting, and a verification checklist in `exercises/ex4/README.md`.
+The currently supported options are a filtered S/4HANA purchase-order Excel workbook and a country-specific SuccessFactors benefit-plan report in Word. Each option defines required filters, report structure, sorting, and a verification checklist in `exercises/ex4/README.md`. The SAP Ariba Buying option is temporarily disabled because its live composed use case has not been qualified reliably.
 
-Before participants build or run the skill, they must enable the required business skill and output skill under **Explore Skills** and confirm both under **Active Skills**. Use `xlsx` for the S/4HANA option, `docx` for SuccessFactors, and `pptx` for Ariba. The S/4HANA option uses the facilitator-confirmed `s4hana-public-cloud` or `s4hana-private-cloud` skill; SuccessFactors uses `successfactors-hr`; the exact SAP Ariba skill must be confirmed in the workshop tenant.
+Before participants build or run the skill, they must enable the required business skill and output skill under **Explore Skills** and confirm both under **Active Skills**. Use `xlsx` for the S/4HANA option and `docx` for SuccessFactors. The S/4HANA option uses the facilitator-confirmed `s4hana-public-cloud` or `s4hana-private-cloud` skill; SuccessFactors uses `successfactors-hr`.
 
 The exact SAP-published skill name and fields depend on the workshop tenant. Do not invent a capability name or claim that the custom skill connects directly to an SAP backend. If the capability or data handoff is unavailable, choose another available scenario or use facilitator-approved synthetic data.
 

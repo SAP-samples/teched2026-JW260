@@ -8,7 +8,9 @@ These reference skills are for facilitator qualification before the workshop. Pa
 | --- | --- |
 | `s4-purchase-order-excel-report` | facilitator-confirmed `s4hana-public-cloud` or `s4hana-private-cloud`, plus `xlsx` |
 | `successfactors-benefit-plan-country-report` | `successfactors-hr`, plus `docx` |
-| `ariba-requisition-powerpoint-review` | facilitator-confirmed SAP Ariba skill, plus `pptx` |
+<!-- SAP Ariba Buying reference temporarily disabled because the live composed use case could not be qualified reliably.
+| `ariba-buying-requisition-item-review` | facilitator-confirmed SAP Ariba Buying skill, plus `pptx` |
+-->
 
 Enable the business skill, output skill, and imported reference skill. Confirm all three under **Active Skills** and select agentic thinking mode.
 
@@ -36,11 +38,17 @@ Expected artifact: `benefit-plans-germany.docx`. Verify it against Option B in `
 
 The expected live behavior is exactly one `successfactors-hr` call for benefit plans whose country or region matches Germany. If country/region metadata is unavailable, an exact `Germany` name match is allowed; partial, alias, and inferred regional matches are not allowed. The Word document must contain only the title, requested-country/report-date scope, plan summary, and plan details—no Data Notes, matching-method explanation, disclaimers, or skill-execution information. The skill must retrieve only returned plan configuration fields, exclude personal enrollments and compensation data, and stop on the first error, partial or truncated result without retrying or switching services.
 
+<!-- SAP Ariba Buying qualification temporarily disabled because the live composed use case could not be qualified reliably.
+
 ### SAP Ariba
 
-`Create a requisition review PowerPoint for submissions from 2026-01-01 through 2026-10-20, minimum total value 1000 EUR, all authorized requesters, status Submitted, with report date 2026-10-20.`
+`Create an SAP Ariba Buying requisition-item review PowerPoint for plant 1710, fixed vendor USSU-V100, delivery dates 2023-08-01 through 2023-08-31, with report date 2026-10-21.`
 
-Expected artifact: `requisition-review.pptx`. Verify it against Option C in `../README.md`.
+Expected artifact: `requisition-item-review.pptx`. Verify it against Option C in `../README.md`.
+
+The expected live behavior is exactly one SAP Ariba Buying request capped at 20 purchase requisition items. It must preserve requisition and item identifiers separately and use only returned item-level fields. On the first error, partial result, or truncated result, it must stop without retrying or switching to SAP Ariba Sourcing.
+
+-->
 
 ## Qualification result
 
