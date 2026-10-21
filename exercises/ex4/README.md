@@ -23,7 +23,7 @@ Before building or running your custom skill, open **Explore Skills** and enable
 | Option | Business skill | Output skill |
 | --- | --- | --- |
 | SAP S/4HANA purchase-order report | The facilitator-confirmed `s4hana-public-cloud` or `s4hana-private-cloud` skill | `xlsx` |
-| SAP SuccessFactors learning report | `successfactors-learning` | `docx` |
+| SAP SuccessFactors benefit-plan country report | `successfactors-hr` | `docx` |
 | SAP Ariba requisition review | The facilitator-confirmed SAP Ariba skill | `pptx` |
 
 Use the exact skill names shown in the workshop catalog. Confirm that each required toggle is on and that both skills appear under **Active Skills**. If the required business or output skill is missing, stop and ask the facilitator which option is supported; enabling only your custom skill is not sufficient.
@@ -69,36 +69,38 @@ Open `purchase-order-report.xlsx` and confirm:
 - values are not converted between currencies;
 - no purchase order was created, changed, approved, or released.
 
-## Option B: SAP SuccessFactors — Learning Due-Date Word Report
+## Option B: SAP SuccessFactors - Benefit-Plan Country Report
 
 ### Target outcome
 
-Create a custom skill that asks for a due-date range and report date, retrieves the signed-in participant's authorized learning assignments with `successfactors-learning`, and creates `learning-due-date-report.docx` with the `docx` skill.
+Create a custom skill that asks for a country and report date, retrieves the signed-in participant's authorized benefit-plan data with `successfactors-hr`, and creates `benefit-plans-<country-slug>.docx` with the `docx` skill. For example, the country `Germany` produces `benefit-plans-germany.docx`.
 
-Use one retrieval. If server-side date filtering is unavailable, the custom skill may filter a complete returned result locally. It must stop if the result is partial, truncated, or unavailable.
+Validate that country is a non-empty country name and that report date uses `YYYY-MM-DD`. Make exactly one call to `successfactors-hr`. Retrieve only benefit plans whose configured country or region matches the requested country. If that metadata is unavailable, an exact country-name match in the returned plan name is an acceptable fallback; state this matching method in `Data Notes`. Do not use partial-name, alias, or inferred regional matches. Retrieve the returned plan name, benefit ID, type, active status, effective date, entitlement amount and currency, payment frequency, payroll integration, enrollment method and requirement, eligibility rule, and any returned opt-out, carry-forward, notification, claims-limit, dependent, or nominee information. Do not retrieve personal enrollments, employee compensation, another employee's data, or benefit plans outside the requested country.
+
+On any error, including authorization, connection, timeout, partial result, or truncated result, do not retry, switch services, or probe alternatives. Report the first error and stop. If the response contains no matching plans, create no document; state that no matching benefit plans were returned.
 
 The document must contain these sections in this order:
 
-1. `Learning Due-Date Report`
-2. `Report Scope` — signed-in user, selected due-date range, and report date.
-3. `Summary` — total assignments and counts for overdue, due within the selected range, and completed.
-4. `Overdue Assignments` — title, due date, and status, sorted by due date ascending.
-5. `Assignments Due in Range` — title, due date, and status, sorted by due date ascending.
-6. `Recommended Next Steps` — a short, factual list based only on the retrieved assignments.
+1. `Benefit Plans - <Country>`
+2. `Report Scope` - requested country and report date.
+3. `Plan Summary` - a table with `Plan Name`, `Benefit ID`, `Type`, `Amount`, `Currency`, `Frequency`, `Enrollment`, and `Status`, sorted alphabetically by `Plan Name`. Use `Not available` only when a field was not returned.
+4. `Plan Details` - one subsection per plan, in the same alphabetical order as the summary. Each subsection must preserve returned values and include only available fields from: plan name, benefit ID, type, status, effective date, entitlement amount and currency, frequency, payroll integration, enrollment requirement and method, enrollment window, opt-out, carry-forward enrollment, notification, eligibility rule, claims limit, dependent-specific rules, nominee requirement, and benefit schedule.
 
-The report must not include learning data for another employee and must not invent completion status, due dates, or recommendations based on unavailable data.
+The document contains only the report title, scope, summary, and plan-detail content. Do not add `Data Notes`, source descriptions, matching-method explanations, read-only statements, eligibility or enrollment disclaimers, payment-entitlement statements, legal or tax disclaimers, or any other process or skill-execution information.
 
 ### Verify the output
 
-Open `learning-due-date-report.docx` and confirm:
+Open `benefit-plans-<country-slug>.docx` and confirm:
 
-- all six sections exist in the required order;
-- the report scope shows the requested date range;
-- the summary counts agree with the listed assignments;
-- overdue and due-in-range assignments appear under the correct headings;
-- assignments are sorted by due date ascending;
-- no unsupported employee or personal information appears;
-- no learning assignment was created, changed, or completed.
+- all four sections exist in the required order;
+- the report scope shows the requested country and report date;
+- every summary row matches the selected country through returned country/region metadata or the disclosed exact plan-name fallback;
+- the summary uses the required columns and alphabetical plan-name order;
+- every plan has one detail subsection in the same order as the summary;
+- details preserve the returned values and do not invent unavailable fields;
+- the document has no `Data Notes`, source or matching-method explanation, read-only statement, eligibility/enrollment/payment disclaimer, or legal/tax disclaimer;
+- no personal enrollment, compensation, unsupported employee information, or plans outside the requested country appear;
+- no SuccessFactors data was created or changed.
 
 ## Option C: SAP Ariba — Requisition Review PowerPoint
 

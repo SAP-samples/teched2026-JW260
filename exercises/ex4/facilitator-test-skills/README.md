@@ -7,7 +7,7 @@ These reference skills are for facilitator qualification before the workshop. Pa
 | Reference skill | Required SAP-published skills |
 | --- | --- |
 | `s4-purchase-order-excel-report` | facilitator-confirmed `s4hana-public-cloud` or `s4hana-private-cloud`, plus `xlsx` |
-| `successfactors-learning-word-report` | `successfactors-learning`, plus `docx` |
+| `successfactors-benefit-plan-country-report` | `successfactors-hr`, plus `docx` |
 | `ariba-requisition-powerpoint-review` | facilitator-confirmed SAP Ariba skill, plus `pptx` |
 
 Enable the business skill, output skill, and imported reference skill. Confirm all three under **Active Skills** and select agentic thinking mode.
@@ -30,9 +30,11 @@ The expected live behavior is one detail request capped at 20 rows, with no stat
 
 ### SAP SuccessFactors
 
-`Create my learning due-date Word report for due dates 2026-01-01 through 2026-12-31, with report date 2026-10-20.`
+`Create a SuccessFactors benefit-plan report for Germany with report date 2026-10-20.`
 
-Expected artifact: `learning-due-date-report.docx`. Verify it against Option B in `../README.md`.
+Expected artifact: `benefit-plans-germany.docx`. Verify it against Option B in `../README.md`.
+
+The expected live behavior is exactly one `successfactors-hr` call for benefit plans whose country or region matches Germany. If country/region metadata is unavailable, an exact `Germany` name match is allowed; partial, alias, and inferred regional matches are not allowed. The Word document must contain only the title, requested-country/report-date scope, plan summary, and plan details—no Data Notes, matching-method explanation, disclaimers, or skill-execution information. The skill must retrieve only returned plan configuration fields, exclude personal enrollments and compensation data, and stop on the first error, partial or truncated result without retrying or switching services.
 
 ### SAP Ariba
 
