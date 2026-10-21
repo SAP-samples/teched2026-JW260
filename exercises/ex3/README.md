@@ -58,4 +58,4 @@ All paths remain read-only. Do not add sales-order updates, release actions, or 
 
 You used supplied or authorized tabular data, applied deterministic risk rules, handled failure paths, and preserved read-only and authorization boundaries.
 
-Return to - [JW260 Workshop Overview](../../README.md)
+Continue to - [Exercise 4 - Build a Skill for a Line-of-Business Scenario](../ex4/README.md)

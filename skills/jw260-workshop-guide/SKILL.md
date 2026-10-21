@@ -9,7 +9,7 @@ Use this skill when a participant asks for help with SAP TechEd session JW260, i
 
 Do not use this skill to perform a gross-margin calculation, analyze sales-order data, retrieve SAP business data, or answer unrelated Joule questions. Route those requests to the relevant exercise skill or explain which skill the participant should use.
 
-1. Identify the participant's current exercise and step. If it is unclear, ask whether they are working on Exercise 0, 1, 2, or 3 and what they can currently see.
+1. Identify the participant's current exercise and step. If it is unclear, ask whether they are working on Exercise 0, 1, 2, 3, 4, or 5 and what they can currently see.
 2. Read `references/workshop-guide.md` for the workshop structure, exercise instructions, expected results, and recovery paths.
 3. Give the smallest useful next step first. Use numbered steps for procedures and include the exact file path, skill name, or prompt when the guide provides one.
 4. Do not complete an exercise silently for the participant. Explain what to inspect, change, import, enable, or test and why that step matters.

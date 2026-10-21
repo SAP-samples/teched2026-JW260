@@ -2,12 +2,14 @@
 
 ## Workshop purpose
 
-JW260 is a hands-on SAP TechEd 2026 session about building custom skills for Joule Work. Participants complete one readiness exercise followed by three progressive technical exercises:
+JW260 is a hands-on SAP TechEd 2026 session about building custom skills for Joule Work. Participants complete one readiness exercise followed by five progressive technical exercises:
 
 0. Sign in, set up the workshop files, and verify readiness.
 1. Compare a deliberately flawed skill with a recommended skill.
 2. Build and test a validated gross-margin calculation skill.
 3. Prioritize synthetic sales-order exceptions with deterministic, read-only rules.
+4. Build and verify a custom skill for a defined S/4HANA, SuccessFactors, or Ariba outcome.
+5. Design an original skill in a freestyle exercise.
 
 Complete the exercises in order. Later exercises build on the metadata, validation, supporting-file, and safety concepts introduced earlier.
 
@@ -33,7 +35,7 @@ Readiness flow:
 3. Open **User menu > Explore Skills > My Skills**.
 4. Confirm that **Import** is available, or use facilitator-preimported skills.
 5. Confirm that agentic thinking mode is available.
-6. Confirm that `exercises/ex0/` through `exercises/ex3/` are present locally.
+6. Confirm that `exercises/ex0/` through `exercises/ex5/` are present locally.
 7. Review the required top-level-folder ZIP structure.
 
 Never put tenant URLs, usernames, passwords, authentication screenshots, or personal data in repository files or workshop prompts. If sign-in or required controls are unavailable, show the visible error or UI to the facilitator rather than bypassing permissions.
@@ -147,6 +149,32 @@ Expected result:
 - Final statement: `No SAP business data was changed.`
 
 The custom skill cannot connect directly to SAP S/4HANA. A tenant-confirmed SAP-published capability may retrieve data the signed-in user is authorized to access. If retrieval, authorization, handoff, or required fields are unavailable, use the synthetic CSV and never invent records.
+
+## Exercise 4 - Build a Skill for a Line-of-Business Scenario
+
+Location: `exercises/ex4/`
+
+Goal: choose one predefined SAP S/4HANA, SAP SuccessFactors, or SAP Ariba outcome, build the custom skill manually or with Joule, and verify its generated report against the fixed output contract.
+
+Agentic Thinking may complete a similar one-off request without a custom skill. The learning objective is to turn that ad hoc behavior into a reusable business procedure with consistent required inputs, safety boundaries, retrieval limits, filenames, and output structures. The SAP-published skill retrieves authorized data, the Office output skill creates the artifact, and the participant's custom skill defines how those capabilities are combined.
+
+The S/4HANA option produces a filtered purchase-order Excel workbook, the SuccessFactors option produces a learning due-date Word report, and the Ariba option produces a five-slide requisition review PowerPoint. Each option defines required filters, report structure, sorting, and a verification checklist in `exercises/ex4/README.md`.
+
+Before participants build or run the skill, they must enable the required business skill and output skill under **Explore Skills** and confirm both under **Active Skills**. Use `xlsx` for the S/4HANA option, `docx` for SuccessFactors, and `pptx` for Ariba. The S/4HANA option uses the facilitator-confirmed `s4hana-public-cloud` or `s4hana-private-cloud` skill; SuccessFactors uses `successfactors-learning`; the exact SAP Ariba skill must be confirmed in the workshop tenant.
+
+The exact SAP-published skill name and fields depend on the workshop tenant. Do not invent a capability name or claim that the custom skill connects directly to an SAP backend. If the capability or data handoff is unavailable, choose another available scenario or use facilitator-approved synthetic data.
+
+## Exercise 5 - Freestyle
+
+Location: `exercises/ex5/`
+
+Goal: independently define, build, test, and improve an original custom skill for a business use case and output of the participant's choice.
+
+Participants define the purpose, success criteria, required inputs, output structure, validation, and missing-information behavior. They import the skill, compare its result with their own criteria, improve one aspect, and run it again.
+
+For a Microsoft Office artifact, participants must enable the corresponding `docx`, `pptx`, or `xlsx` skill and confirm it under **Active Skills**, together with any required business skill.
+
+Use only synthetic or authorized information. If the chosen output is unsupported, select a supported format or clearly state the environment limitation.
 
 ## Troubleshooting
 

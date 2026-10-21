@@ -6,7 +6,7 @@ This repository contains the material for the SAP TechEd 2026 session JW260 - Bu
 
 ## Overview
 
-In this hands-on session, you build progressively more capable Joule Work custom skills. You start by comparing skill descriptions and instructions, then add validated deterministic calculation, and finally prioritize synthetic sales-order exceptions with a read-only skill.
+In this hands-on session, you build progressively more capable Joule Work custom skills. You start by comparing skill descriptions and instructions, add validated deterministic calculation, prioritize synthetic sales-order exceptions, and then design your own business and document-generation skills.
 
 After completing the exercises, you will be able to:
 
@@ -15,6 +15,8 @@ After completing the exercises, you will be able to:
 - Define required inputs, validation, output, and failure behavior.
 - Use bundled references and scripts for deterministic processing.
 - Keep custom skills within no-network, authorization, and read-only boundaries.
+- Build a custom skill around an available SAP-published skill.
+- Create a PowerPoint, Word, or Excel artifact with an original skill.
 
 ## Requirements
 
@@ -47,6 +49,12 @@ After completing the exercises, you will be able to:
 - [Exercise 3 - Sales Order Exception Prioritizer](exercises/ex3/)
   - Analyze supplied synthetic sales-order data.
   - Apply deterministic read-only prioritization rules.
+- [Exercise 4 - Build a Skill for a Line-of-Business Scenario](exercises/ex4/)
+  - Choose a defined S/4HANA, SuccessFactors, or Ariba outcome.
+  - Build the skill and verify its Excel, Word, or PowerPoint report.
+- [Exercise 5 - Freestyle](exercises/ex5/)
+  - Design an original skill for a business use case of your choice.
+  - Define, build, test, and improve the result independently.
 
 Complete the exercises in order. Later exercises build on the metadata, validation, supporting-file, and safety concepts introduced earlier.
 
@@ -54,12 +62,14 @@ Complete the exercises in order. Later exercises build on the metadata, validati
 
 The repository also includes the optional [`jw260-workshop-guide`](skills/jw260-workshop-guide/) support skill. It is not a separate exercise. Import and enable it if you want to ask Joule questions such as:
 
-- `What are the four JW260 exercises?`
+- `What are the six JW260 exercises?`
 - `Help me get ready with Exercise 0.`
 - `Help me get started with Exercise 2.`
 - `Why is my skill ZIP rejected?`
 - `What should I check when a skill is not selected?`
 - `What is the fallback for Exercise 3?`
+- `How do I choose a scenario for Exercise 4?`
+- `How do I get started with Exercise 5?`
 
 The guide explains workshop navigation, exercise goals, exact prompts, expected results, troubleshooting, and safety boundaries. It does not perform the calculation or sales-order analysis for you.
 
