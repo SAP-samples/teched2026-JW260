@@ -39,7 +39,7 @@ After completing the exercises, you will be able to:
 
 - [Exercise 0 - Log In, Set Up, and Get Ready](exercises/ex0/)
   - Sign in with the assigned workshop identity.
-  - Verify access, import options, files, and ZIP structure.
+  - Verify access, import options, and workshop files.
 - [Exercise 1 - Compare Skill Behavior](exercises/ex1/)
   - Compare intentionally flawed skills with a recommended skill.
   - Improve one skill and retest the same prompts.
@@ -65,7 +65,7 @@ The repository also includes the optional [`jw260-workshop-guide`](skills/jw260-
 - `What are the six JW260 exercises?`
 - `Help me get ready with Exercise 0.`
 - `Help me get started with Exercise 2.`
-- `Why is my skill ZIP rejected?`
+- `How do I import my skill?`
 - `What should I check when a skill is not selected?`
 - `What is the fallback for Exercise 3?`
 - `How do I choose a scenario for Exercise 4?`
@@ -76,36 +76,26 @@ The guide explains workshop navigation, exercise goals, exact prompts, expected 
 ## Importing a skill
 
 1. Open the exercise folder and identify the skill folder containing `SKILL.md`.
-2. Create a ZIP containing the complete top-level skill folder, not only the files inside it.
+2. For a simple skill, select its `SKILL.md` file. For a skill with supporting files, select the complete unzipped skill folder.
 3. Open **User menu > Explore Skills > Import** in Joule Work.
-4. Import the ZIP.
+4. Import the selected file or folder.
 5. Find the skill under **My Skills** and enable it.
 6. Select agentic thinking mode.
 7. Follow the prompts and expected results in the exercise README.
 
-Example archive layout:
+Example skill folder layout:
 
 ```text
-workshop-greeter.zip
-└── workshop-greeter/
-    └── SKILL.md
+workshop-greeter/
+└── SKILL.md
 ```
 
-## Safety boundaries
-
-- Use only supplied synthetic data or data your workshop identity is authorized to read.
-- Never add credentials, secrets, tenant URLs, personal data, or production customer records to a skill.
-- Custom skills run without external network connectivity. Do not add HTTP or API calls.
-- A custom skill does not connect directly to SAP S/4HANA. SAP data retrieval requires an available SAP-published capability and the signed-in user's authorization.
-- Exercise 3 is read-only. Do not create, update, release, or delete SAP business data.
-- If live retrieval is unavailable, use the supplied `open-sales-orders.csv` fixture. Never invent business records.
 
 ## Troubleshooting
 
 | Problem | Recovery |
 | --- | --- |
-| Import control is missing | Use a facilitator-preimported skill. |
-| ZIP is rejected | Confirm the archive contains one top-level skill folder with `SKILL.md` at its root. |
+| Import fails | Import a `SKILL.md` file directly for a simple skill, or import the complete unzipped skill folder when it has supporting files. |
 | Skill is not selected | Confirm agentic thinking mode and enabled status, then retry the exact exercise prompt. |
 | Bundled script cannot run | Use the formulas or expected behavior documented in the exercise. |
 | SAP capability or authorization is unavailable | Use the synthetic CSV in Exercise 3. |

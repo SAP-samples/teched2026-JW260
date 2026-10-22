@@ -22,13 +22,17 @@ Before building or running your custom skill, open **Explore Skills** and enable
 
 | Option | Business skill | Output skill |
 | --- | --- | --- |
-| SAP S/4HANA purchase-order report | The facilitator-confirmed `s4hana-public-cloud` or `s4hana-private-cloud` skill | `xlsx` |
+| SAP S/4HANA purchase-order report | The facilitator-confirmed `s4hana-public-cloud` skill | `xlsx` |
 | SAP SuccessFactors benefit-plan country report | `successfactors-hr` | `docx` |
 <!-- SAP Ariba Buying option temporarily disabled because the live composed use case could not be qualified reliably.
 | SAP Ariba Buying requisition-item review | The facilitator-confirmed SAP Ariba Buying skill | `pptx` |
 -->
 
 Use the exact skill names shown in the workshop catalog. Confirm that each required toggle is on and that both skills appear under **Active Skills**. If the required business or output skill is missing, stop and ask the facilitator which option is supported; enabling only your custom skill is not sufficient.
+
+The **Active Skills** view is the final readiness check. The cards shown in your tenant will depend on the option you choose.
+
+![Active Skills showing enabled custom and SAP-published skills](images/04-01-active-skills.png)
 
 ## Option A: SAP S/4HANA — Filtered Purchase Order Excel Report
 
@@ -151,7 +155,7 @@ Open `requisition-item-review.pptx` and confirm:
 3. Create a lowercase, hyphenated skill folder containing `SKILL.md`.
 4. Build the skill manually or ask Joule to help draft it.
 5. Ensure the skill defines its purpose, required filters, retrieval handoff, validation, exact output structure, sorting, missing-data behavior, and read-only boundary.
-6. ZIP the complete skill folder, import it, enable it, and select agentic thinking mode.
+6. Import the complete unzipped skill folder, enable it, and select agentic thinking mode.
 7. Run the skill with filter values supported by the workshop data.
 8. Download and open the generated file.
 9. Verify it against the checklist for your selected option.

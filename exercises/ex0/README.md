@@ -18,41 +18,60 @@ Sign in to the workshop environment, prepare the repository files, and confirm t
 3. Complete the authentication process if prompted.
 4. Confirm that Joule Work opens successfully.
 
+The empty conversation screen is your starting point. The exact greeting can vary by time of day.
+
 If sign-in fails, stop and contact the facilitator. Do not use another participant's identity.
 
 ## Step 2: Check Joule Work Access
 
-1. Open **User menu > Explore Skills**.
-2. Confirm that you can open **My Skills**.
-3. Look for the **Import** control.
+1. Confirm that agentic thinking mode is available. You will select it when testing skills in the exercises. You can test if it is there by opening a new conversation > +-icon > agentic thinking
+
+![Joule Work new conversation screen with the message input ready](images/00-05-agentic-thinking.png)
+
+2. Open **User menu > Explore Skills**.
+
+   ![User menu with Explore Skills available](images/00-02-user-menu-explore-skills.png)
+
+3. Confirm that you can open **My Skills**.
+4. Look for the **Import** control.
    - If it is available, you will import the exercise skills yourself.
-4. Confirm that agentic thinking mode is available. You will select it when testing skills in the exercises.
+
+The Explore Skills page provides **My Skills**, **Active Skills**, and the **Import** control:
+
+![Explore Skills page with tabs and Import control](images/00-03-explore-skills-import.png)
+
+Selecting **Import** opens the skill import dialog. It also states the custom-skill sandbox boundary:
+
+![Import Skill dialog with folder and file controls and the no-network security notice](images/00-04-import-skill-dialog.png)
 
 
 ## Step 3: Prepare the Workshop Files
 
 1. Download or clone this repository.
 2. Open the repository and locate the `exercises` folder.
-3. Confirm that it contains `ex0`, `ex1`, `ex2`, and `ex3`.
+3. Confirm that it contains `ex0`, `ex1`, `ex2`, `ex3`, `ex4`, and `ex5`.
 4. Open `exercises/ex1/` and confirm that both `broad-greeter/` and `workshop-greeter/` contain a `SKILL.md` file.
 
-## Step 4: Understand the ZIP Structure
+## Step 4: Understand Import Formats
 
-Each imported skill must be packaged as a ZIP containing the complete top-level skill folder, not only the files inside it.
+Joule Work imports either a `SKILL.md` file directly or an unzipped skill folder. Do not create a ZIP archive for this workshop.
 
-Correct:
+For a simple skill, select its `SKILL.md` file:
 
 ```text
-workshop-greeter.zip
-└── workshop-greeter/
-    └── SKILL.md
+workshop-greeter/
+└── SKILL.md
 ```
 
-Incorrect:
+For a skill with supporting files, select the complete unzipped skill folder so its `SKILL.md` and referenced files stay together:
 
 ```text
-workshop-greeter.zip
-└── SKILL.md
+gross-margin-calculator/
+├── SKILL.md
+├── references/
+│   └── formulas.md
+└── scripts/
+    └── calculate_margin.py
 ```
 
 
@@ -65,8 +84,8 @@ Before continuing, confirm all applicable items:
 - [ ] I can open **User menu > Explore Skills > My Skills**.
 - [ ] I can import skills, or the facilitator has confirmed the preimported-skill fallback.
 - [ ] Agentic thinking mode is available.
-- [ ] I have the repository and can locate all four exercise folders.
-- [ ] I understand the required ZIP folder structure.
+- [ ] I have the repository and can locate all six exercise folders.
+- [ ] I understand when to import a `SKILL.md` file or an unzipped skill folder.
 
 
 Continue to - [Exercise 1: Compare Skill Behavior](../ex1/README.md)

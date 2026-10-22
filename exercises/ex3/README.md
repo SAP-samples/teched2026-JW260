@@ -21,6 +21,9 @@ For live data, `TotalCreditCheckStatus` is a tenant code-list value, not a Boole
 ## Fixture fallback path
 
 1. Attach `sample-data/open-sales-orders.csv`.
+
+   ![The synthetic open-sales-orders CSV attached to the Joule conversation](images/03-01-attach-fixture.png)
+
 2. Run: `Analyze the attached open-sales-orders.csv as of 2026-10-07 using Sales Order Exception Prioritizer. Do not change any business data.`
 3. Confirm that the ranked table is sorted by score descending, requested date ascending, and sales order ascending.
 4. Confirm these totals: Critical 5, High 6, Medium 5, Low 4, total 20.

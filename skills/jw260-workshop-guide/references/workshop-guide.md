@@ -17,7 +17,7 @@ Complete the exercises in order. Later exercises build on the metadata, validati
 
 Location: `exercises/ex0/`
 
-Goal: sign in with the facilitator-assigned workshop identity, confirm Joule Work access, prepare the repository files, understand the required ZIP structure, and verify the import path before beginning the technical exercises.
+Goal: sign in with the facilitator-assigned workshop identity, confirm Joule Work access, prepare the repository files, understand the supported import formats, and verify the import path before beginning the technical exercises.
 
 Participants need:
 
@@ -25,7 +25,7 @@ Participants need:
 - Joule Work access with agentic thinking mode available.
 - Access to **User menu > Explore Skills**.
 - Permission to import and enable a custom skill, or access to facilitator-preimported skills.
-- A browser that can upload ZIP and CSV files.
+- A browser that can upload files, folders, and CSV files.
 - This repository, downloaded or cloned locally.
 
 Readiness flow:
@@ -36,25 +36,24 @@ Readiness flow:
 4. Confirm that **Import** is available, or use facilitator-preimported skills.
 5. Confirm that agentic thinking mode is available.
 6. Confirm that `exercises/ex0/` through `exercises/ex5/` are present locally.
-7. Review the required top-level-folder ZIP structure.
+7. Review whether to import a `SKILL.md` file directly or a complete unzipped skill folder.
 
 Never put tenant URLs, usernames, passwords, authentication screenshots, or personal data in repository files or workshop prompts. If sign-in or required controls are unavailable, show the visible error or UI to the facilitator rather than bypassing permissions.
 
 To import a custom skill:
 
 1. Identify the skill folder containing `SKILL.md`.
-2. Create a ZIP containing the complete top-level skill folder, not only its contents.
+2. For a simple skill, select its `SKILL.md` file. For a skill with supporting files, select the complete unzipped skill folder.
 3. Open **User menu > Explore Skills > Import**.
-4. Import the ZIP.
+4. Import the selected file or folder.
 5. Find the skill under **My Skills** and enable it.
 6. Select agentic thinking mode before testing.
 
-A valid simple archive looks like this:
+A valid simple skill folder looks like this:
 
 ```text
-workshop-greeter.zip
-└── workshop-greeter/
-    └── SKILL.md
+workshop-greeter/
+└── SKILL.md
 ```
 
 ## Exercise 1 - Compare Skill Behavior
@@ -82,7 +81,7 @@ Exercise flow:
 2. Run each prompt twice and record visible behavior and provenance when available.
 3. Compare both `SKILL.md` files.
 4. Improve `broad-greeter` by narrowing its description, adding a negative boundary, and defining a reliable output contract.
-5. Rebuild and re-import `broad-greeter`.
+5. Re-import the updated `broad-greeter` folder.
 6. Isolate the recommended and improved skills in turn and retest unchanged prompts.
 
 Routing is probabilistic. If provenance is unavailable, record `Not visible` and compare observable response qualities without claiming which skill ran.
@@ -182,15 +181,16 @@ Use only synthetic or authorized information. If the chosen output is unsupporte
 
 Use a facilitator-preimported skill. Do not try to bypass permissions.
 
-### ZIP is rejected
+### Import fails
 
 Confirm that:
 
-- The ZIP contains one top-level folder.
+- A simple skill is selected as its `SKILL.md` file.
+- A skill with supporting files is selected as its complete unzipped folder.
 - The folder name is lowercase and hyphenated.
 - `SKILL.md` is at the root of that folder.
 - The metadata `name` matches the folder name.
-- The archive contains no `.DS_Store`, `__MACOSX`, caches, or nested duplicate folder.
+- The folder contains no `.DS_Store`, caches, secrets, or nested duplicate skill folder.
 
 ### Skill is not selected
 

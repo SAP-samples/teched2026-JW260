@@ -16,7 +16,7 @@ Enable the business skill, output skill, and imported reference skill. Confirm a
 
 ## Package and import
 
-ZIP the complete named folder so that the archive contains one top-level folder and its `SKILL.md`. Ready-to-import archives may also be generated in this directory during facilitator preparation.
+Import the complete named folder unzipped so that it includes its root `SKILL.md` and all supporting files. Do not create ready-to-import archives in this directory.
 
 ## Qualification requests
 

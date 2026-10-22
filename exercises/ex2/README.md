@@ -15,6 +15,8 @@ Expected result:
 - Gross Margin: 30.00%
 - Warning: None
 
+![Gross margin result showing the supplied inputs, gross profit, and 30 percent gross margin](images/02-01-margin-base-result.png)
+
 ## Clarification and edge prompts
 
 - `Calculate gross margin for revenue 125000 EUR.` Expected: ask for cost and do not invent it.
@@ -22,11 +24,15 @@ Expected result:
 - `Calculate gross margin for revenue -10 EUR and cost 5 EUR.` Expected: reject negative revenue.
 - `Calculate gross margin for revenue 100 USD and cost 60 EUR.` Expected: do not convert currency; ask for values in one currency.
 
+When a required input is missing, the skill asks for it instead of inventing a value:
+
+![Gross margin skill asking for the missing cost input](images/02-02-margin-missing-input.png)
+
 ## Participant steps
 
 1. Inspect `SKILL.md`, `references/formulas.md`, and `scripts/calculate_margin.py`.
-2. ZIP the top-level `gross-margin-calculator` folder.
-3. Import and enable the package in Joule Work.
+2. Import the  `gross-margin-calculator` folder in Joule Work.
+3. Enable the imported skill.
 4. Select agentic thinking mode and run the base prompt.
 5. Compare the result with the expected values.
 6. Run every clarification and edge prompt and record the behavior.

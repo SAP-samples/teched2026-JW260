@@ -27,7 +27,7 @@ If your outcome creates a Microsoft Office file, enable the corresponding SAP-pu
    - the behavior when information is missing;
    - a final check before returning the file.
 7. If your skill needs a script, reference, or other supporting file, add it in the appropriate subfolder and explain when Joule should use it.
-8. ZIP the complete skill folder and import it. Enable your custom skill and every business or output skill it depends on, confirm they appear under **Active Skills**, and select agentic thinking mode.
+8. Import the complete unzipped skill folder. Enable your custom skill and every business or output skill it depends on, confirm they appear under **Active Skills**, and select agentic thinking mode.
 9. Run the skill and inspect the result. If it creates a file, download and open it; a successful download alone is not enough.
 10. Compare the result with the success criteria you defined before building.
 11. Improve one aspect of the skill and run it again.
