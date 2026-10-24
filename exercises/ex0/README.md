@@ -10,7 +10,6 @@ Sign in to the workshop environment, prepare the repository files, and confirm t
 - The workshop identity assigned to you by your facilitator.
 - This repository, downloaded or cloned to your computer.
 
-
 ## Step 1: Sign In
 
 1. Open the workshop tenant URL supplied by your facilitator.
@@ -75,6 +74,59 @@ gross-margin-calculator/
 ```
 
 
+## Step 5: First Interaction
+
+Once the readiness check is complete, open a new conversation, enable agentic thinking mode, and send these prompts one at a time to get a feel for how Joule communicates.
+
+1. `Who are you and what can you help me with?`
+
+   Joule introduces itself and summarizes its capabilities.
+
+2. `What are your limitations? What can't you do?`
+
+   Knowing what Joule won't do is just as useful as knowing what it will.
+
+3. `Can you do a quick calculation? If we raised 47 purchase orders at an average value of $12,400 each, what is the total spend?`
+
+   Expected answer: **$582,800**. A quick way to confirm the conversation is live and responding correctly.
+
+## Optional: Explore SAP-published Skills
+
+The workshop exercises focus on custom skills you build yourself. Before you start, you can also explore what Joule's pre-shipped SAP skills can do on their own. These skills connect to live S/4HANA and SuccessFactors data in the workshop tenant.
+
+### Enable the LOB skills
+
+1. Open **User menu > Explore Skills**.
+2. On the **Published by SAP** tab, find the SAP-published skills. They appear alongside any custom skills you have imported. SAP-published skills are marked with SAP as the publisher.
+3. Enable `S4 HANA public` and `Successfactors HCM` using the toggle on each card.
+4. Confirm that both appear under **Active Skills**.
+5. Open a new conversation and enable agentic thinking mode.
+
+### S/4HANA — purchasing and finance data
+
+Try these prompts one at a time:
+
+- `Show me my last 5 purchase orders.`
+- `Are there any open purchase orders over $50,000?`
+- `Show me all open vendor invoices from last month.`
+
+Joule pulls data from S/4HANA without you naming a transaction code or Fiori app.
+
+### SuccessFactors — HR and org data
+
+Try these prompts one at a time:
+
+- `What is my current job title and cost centre?`
+- `Who is my manager and who reports to me?`
+- `How many employees do we have in the Manufacturing division?`
+
+Joule identifies your user account automatically and returns live data from SuccessFactors.
+
+> [!note]
+> The exact values you see depend on the workshop identity assigned to you. Counts and names will differ from the screenshots in JW160. If a skill toggle is not visible, the skill is not available in this tenant — skip that section and continue to the Readiness Check.
+
+---
+
 ## Readiness Check
 
 Before continuing, confirm all applicable items:
@@ -86,6 +138,5 @@ Before continuing, confirm all applicable items:
 - [ ] Agentic thinking mode is available.
 - [ ] I have the repository and can locate all six exercise folders.
 - [ ] I understand when to import a `SKILL.md` file or an unzipped skill folder.
-
 
 Continue to - [Exercise 1: Compare Skill Behavior](../ex1/README.md)
