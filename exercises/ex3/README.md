@@ -110,13 +110,7 @@ When a ranked CSV is available, download and open it to inspect the full analyze
 | --- | --- |
 | No qualified SAP capability or insufficient authorization | Do not broaden access. Use the synthetic CSV. |
 | Capability cannot count, filter, sort, or limit before retrieval | Do not analyze an arbitrary first page. Use the synthetic CSV. |
-| Retrieval error, partial data, or truncated response | Stop; do not retry, switch services, or fetch more pages. Use the CSV path. |
-| Credit status text is unavailable or conflicts with overall block status | Keep credit status `unknown`, award no credit-block points, and report the row for review. |
-| Unrecognized delivery status | Correct the CSV value or ask the facilitator for the qualified live mapping. Do not guess. |
-| Missing or renamed columns | Supply `sales_order`, `customer`, `net_value`, `currency`, `requested_delivery_date`, `overall_delivery_status`, `delivery_block`, and `credit_block`. |
-| Script execution unavailable | Stop and use the labeled reference-only walkthrough above. Execution is not complete. |
-| Empty valid input or zero live matches | A zero-count summary and an output CSV with headers but no data rows are valid. |
-| Validation identifies a row and field | Correct that value, then rerun the script. |
+| Retrieval error, partial data, or truncated response | Stop; do not retry, switch services, or fetch more pages. Use the CSV path. | 
 
 ## Optional extensions
 
