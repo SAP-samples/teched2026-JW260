@@ -39,7 +39,7 @@ If import permission is missing, ask the facilitator about preimported skills or
 
 ## Exercises
 
-**Core session:** Exercise 0 for readiness, followed by Exercises 1-4 in order. Use the synthetic CSV path in Exercise 3 and complete one scenario in Exercise 4. Optional sections are for early finishers or later exploration.
+**Core session:** Exercise 0 for readiness, followed by Exercises 1-5 in order. Use the synthetic CSV path in Exercise 3 and complete one scenario in Exercise 4. Exercise 6 is optional for early finishers or take-home.
 
 | Exercise | What you will do |
 | --- | --- |
@@ -48,7 +48,8 @@ If import permission is missing, ask the facilitator about preimported skills or
 | [2 - Gross Margin Calculator](exercises/ex2/) | Inspect the instruction-to-script handoff and test input validation. |
 | [3 - Sales Order Exception Prioritizer](exercises/ex3/) | Score synthetic orders and explain the result. Live retrieval is optional. |
 | [4 - Build a Skill for a Line-of-Business Scenario](exercises/ex4/) | Choose an S/4HANA Excel report or SuccessFactors Word report, then build and verify your own skill. A synthetic purchase-order path is available if live retrieval is blocked. |
-| [5 - Freestyle (optional / take-home)](exercises/ex5/) | Design an original skill and define your own success criteria. |
+| [5 - Supplier Invoice Reconciliation](exercises/ex5/) | Fill in a skill scaffold to reconcile a supplier invoice PDF against a purchase order and export an Excel report. |
+| [6 - Freestyle (optional / take-home)](exercises/ex6/) | Design an original skill and define your own success criteria. |
 
 > [!NOTE]
 > **Check content, not every pixel**
@@ -58,7 +59,7 @@ If import permission is missing, ask the facilitator about preimported skills or
 
 The optional [`jw260-workshop-guide`](skills/jw260-workshop-guide/) support skill explains navigation, exercise prompts, expected results, and troubleshooting. Import its complete folder and enable it when you need help. Keep it disabled during Exercise 1 so it does not compete with the greeters.
 
-Try `Help me get started with Exercise 2.`, `How do I replace my imported skill?`, or `Which exercises are optional?`
+Try `Help me get started with Exercise 2.`, `Help me get started with Exercise 5.`, `How do I replace my imported skill?`, or `Which exercises are optional?`
 
 The guide explains the next step; it does not perform the exercise's business work for you.
 

@@ -1,67 +1,70 @@
-# Exercise 5: Freestyle (Optional Stretch or Take-Home)
-
-This is an optional extension after the core exercises. Use spare workshop time or return to it later; it is not required to complete the workshop.
+# Exercise 5: Supplier Invoice Reconciliation — Build It Yourself
 
 ## Goal
 
-Design, build, and test an original custom Joule skill for a use case and outcome of your choice.
+Write a custom Joule skill that a user can trigger by attaching a supplier invoice PDF and asking for an inconsistency check. The skill should extract data from the invoice, retrieve the matching purchase order from SAP S/4HANA, flag any discrepancies, and produce a plain-language summary and an Excel report.
 
-You can write `SKILL.md` manually or ask Joule to draft it from your requirements. Review the generated skill before importing and testing it.
+The scaffold is in `invoice-po-reconciliation/`. Fill in the `<!-- TODO -->` sections, then import and test. The complete solution is in `solutions/` — check it only after your own attempt.
 
-## Choose your outcome
+## Timebox: 30 minutes
 
-Choose a concrete business purpose and decide what the skill should return. Your result may be a conversational response, analysis, workflow, PowerPoint, Word document, Excel workbook, or another artifact supported by the workshop environment.
+- Read the scenario and open the sample files: 5 minutes
+- Fill in the scaffold: 15 minutes
+- Import, test, and iterate: 10 minutes
 
-Unlike Exercise 4, this exercise does not prescribe the business scenario, input fields, transformation rules, or output format. You define the success criteria before you build the skill. Use supplied or authorized data and the capabilities available in the workshop environment.
+## Before You Start
 
-If your outcome creates a Microsoft Office file, enable the corresponding SAP-published output skill in **Explore Skills** before testing: `docx` for Word, `pptx` for PowerPoint, or `xlsx` for Excel. Confirm that it appears under **Active Skills** together with any business skill your scenario needs.
+1. Open **Explore Skills** and enable the SAP-published S/4HANA skill confirmed by your facilitator and the `xlsx` output skill.
+2. Confirm both appear under **Active Skills**.
+3. Select agentic thinking mode.
 
-## Participant steps
+## The Scenario
 
-1. Write one sentence that describes what your skill creates and for whom.
-2. Decide which inputs the user must provide and which information must never be invented.
-3. Define the expected response or artifact structure before writing the skill.
-4. Create a lowercase, hyphenated skill folder containing a `SKILL.md`.
-5. Add YAML metadata with a matching `name` and a precise `description`.
-6. Write instructions that define:
-   - when the skill should and should not be used;
-   - required inputs and validation;
-   - the exact output structure;
-   - the output format and filename when a file is required;
-   - the behavior when information is missing;
-   - a final check before returning the response or file.
-7. If your skill needs a script, reference, or other supporting file, add it in the appropriate subfolder and explain when Joule should use it.
-8. Follow [Importing a skill](../../README.md#importing-a-skill). Enable your custom skill and every business or output skill it depends on, confirm they appear under **Active Skills**, and start a new **Agentic Thinking** conversation.
-9. Run the skill and inspect the result. If it creates a file, download and open it; a successful download alone is not enough.
-10. Compare the result with the success criteria you defined before building.
-11. Improve one aspect of the source. Follow [Replacing an imported skill](../../README.md#replacing-an-imported-skill) and confirm the custom skill and dependencies under **Active Skills**. Retest the same request in a new **Agentic Thinking** conversation.
+A finance team member attaches a supplier invoice PDF to Joule and asks for an inconsistency check against the corresponding SAP purchase order. Your skill handles everything from there — no further prompts needed.
 
-## Expected result
+Open both sample files before writing the skill:
 
-The skill achieves the outcome and success criteria you defined, uses only supplied or authorized information, and asks for missing required input instead of inventing it.
+| File | What it is |
+|---|---|
+| `sample-data/Invoice_INV-2023-08841_RookEquip.pdf` | The supplier invoice |
+| `sample-data/PurchaseOrder_4500000000.pdf` | The SAP purchase order |
+| `sample-data/po-4500000000-fixture.json` | PO fixture in USD (fallback if SAP is unavailable) |
+| `sample-data/po-4500000000-eur-fixture.json` | PO fixture in EUR (use after the currency dialogue) |
 
-## Review questions
+Note the differences between the invoice and the PO — your skill needs to detect and report them.
 
-- Is the skill purpose narrow enough for reliable selection?
-- Are all required inputs defined?
-- Does the result follow the structure in `SKILL.md`?
-- If a file is created, can it be opened and used without repair?
-- Does the skill identify missing information rather than inventing it?
-- Is the result free of credentials, personal data, and unauthorized business data?
+## Fill in the Scaffold
+
+Open `invoice-po-reconciliation/SKILL.md` and `references/reconciliation-rules.md`. Each file has `<!-- TODO -->` comments with a short hint. Fill in every section, then zip the `invoice-po-reconciliation/` folder and import it.
+
+## Test
+
+Attach `sample-data/Invoice_INV-2023-08841_RookEquip.pdf` and run:
+
+```
+Please analyse this invoice for inconsistencies and give me a detailed report.
+```
+
+The skill should extract all data from the PDF without asking, detect that the PO currency (USD) differs from the invoice currency (EUR), and ask how to proceed. Supply `sample-data/po-4500000000-eur-fixture.json` when prompted, then verify the Excel output.
+
+Expected result: `invoice-reconciliation-INV-2023-08841.xlsx` with a `Summary` sheet and a `Line Items` sheet showing one `price_deviation` line and one `not_in_po` line.
+
+## Fixture Fallback
+
+If the SAP S/4HANA capability is unavailable, the skill will ask for a PO fixture. Attach `sample-data/po-4500000000-fixture.json` (USD) to trigger the currency dialogue, then supply `po-4500000000-eur-fixture.json` to continue.
 
 ## Troubleshooting
 
 | Problem | Action |
-| --- | --- |
-| The skill is not selected | Narrow the description and confirm that the skill is enabled in agentic thinking mode. |
-| Joule asks for information repeatedly | Make the required inputs and accepted formats explicit. |
-| A requested artifact cannot be created | Use a supported format or clearly state the environment limitation. |
-| A Word, PowerPoint, or Excel file is not created | Confirm that `docx`, `pptx`, or `xlsx` is enabled under **Explore Skills** and appears under **Active Skills**. |
-| A file downloads but does not open | Check the file extension, generation instructions, and supporting script output. |
-| The output structure changes between runs | Define the response, section, slide, sheet, or column order explicitly. |
+|---|---|
+| Skill asks for invoice number or PO upfront | Add the extraction step to `SKILL.md` — the skill should read these from the PDF. |
+| Skill stops silently on currency mismatch | Add a currency-mismatch block that presents options to the user. |
+| No plain-language analysis before the file | Add a step that presents findings before exporting. |
+| `xlsx` skill is disabled | Enable it under **Explore Skills** and confirm it appears under **Active Skills**. |
+| Generated file cannot be opened | Confirm the `xlsx` skill ran, check the filename, and regenerate. |
 
 ## Summary
 
-If you completed this optional extension, you designed, built, tested, and improved an original custom skill that produces a reusable conversational response, analysis, or supported artifact against your own success criteria.
+You built a skill that reads an invoice PDF, detects discrepancies against a purchase order, and delivers a reconciliation report — with a governed read-only boundary throughout.
 
-Return to - [JW260 Workshop Overview](../../README.md)
+Continue to — [Exercise 6 - Freestyle](../ex6/README.md) or return to [JW260 Workshop Overview](../../README.md)
