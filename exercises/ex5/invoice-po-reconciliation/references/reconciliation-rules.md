@@ -16,7 +16,3 @@
 ## Overall status
 
 <!-- TODO: When is the result a MATCH, and when is it REVIEW REQUIRED? -->
-
-## PO fixture format
-
-<!-- TODO: Paste a minimal JSON example a user could supply when SAP is unavailable. -->

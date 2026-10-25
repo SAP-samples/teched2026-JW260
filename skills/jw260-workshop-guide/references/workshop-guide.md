@@ -6,14 +6,15 @@ This bundled reference mirrors the participant instructions. Use it for workshop
 
 ## Workshop purpose
 
-JW260 is a two-hour hands-on SAP TechEd 2026 session about building custom skills for Joule Work. There are **six exercises, numbered 0-5**: one readiness exercise, four core technical exercises, and one optional/take-home exercise. The workshop-guide skill is optional support, not a seventh exercise:
+JW260 is a two-hour hands-on SAP TechEd 2026 session about building custom skills for Joule Work. There are **seven exercises, numbered 0-6**: one readiness exercise, five core technical exercises, and one optional/take-home exercise. The workshop-guide skill is optional support, not an eighth exercise:
 
 0. Sign in, set up the workshop files, and verify readiness.
 1. Compare a deliberately flawed skill with a recommended skill.
 2. Inspect and test a validated gross-margin calculation skill.
 3. Prioritize synthetic sales-order exceptions with deterministic rules.
 4. Build and verify a custom skill for a defined S/4HANA Excel or SuccessFactors Word report.
-5. Optional/take-home: design an original skill in a freestyle exercise.
+5. Fill in a skill scaffold to reconcile a supplier invoice PDF against a purchase order.
+6. Optional/take-home: design an original skill in a freestyle exercise.
 
 Complete the core exercises in order. Use the synthetic CSV path in Exercise 3 and one scenario in Exercise 4. Live Exercise 3, extra SAP exploration, and all optional comparisons/extensions are for early finishers or later. Protect time for participants to author their own skill in Exercise 4.
 
@@ -41,7 +42,7 @@ Readiness flow:
 3. Open **User menu > Explore Skills > My Skills**.
 4. Confirm that **Import** is available. If not, ask the facilitator about preimported examples or pairing with an authorized participant. A preimported skill supports observation, but does not replace an authorized way to test the participant's changes.
 5. Confirm that agentic thinking mode is available.
-6. Confirm that `exercises/ex0/` through `exercises/ex5/` are present locally.
+6. Confirm that `exercises/ex0/` through `exercises/ex6/` are present locally.
 7. Review whether to import a `SKILL.md` file directly or a complete unzipped skill folder. Extract a repository ZIP first; do not ZIP the skill for catalog import.
 8. Follow **Step 5: First Interaction** in a fresh Agentic Thinking conversation. Send these prompts one at a time, in this order:
    - `Who are you and what can you help me with?`
@@ -107,7 +108,7 @@ Exact prompts:
 
 Replace `NAME` with a workshop alias and keep it the same across versions. Run each numbered prompt in its own new conversation in agentic thinking mode, including when retesting; otherwise the missing name could be remembered from an earlier prompt. The third prompt omits the name; if Joule asks for it, provide it and compare the completed response. Asking for missing information is not a failure.
 
-Compare name handling, exactly six exercise bullets in order (0 readiness, 1 compare/improve, 2 inspect/test the calculator, 3 synthetic order scoring, 4 build one business report, 5 optional freestyle), correct optional scope, the closing sentence `Start with the smallest reliable skill, then add complexity one controlled step at a time.`, and a response under 120 words. The response must use plain language with no emoji or em/en dashes. Use colons or full stops between bullet labels and explanations. The old three-level greeting screenshot is labeled historical, not the current expected overview. Compare only observable response qualities when provenance is unavailable. Do not use unrelated prompts whose answer may come from standard agentic reasoning and cannot be attributed to either skill.
+Compare name handling, exactly seven exercise bullets in order (0 readiness, 1 compare/improve, 2 inspect/test the calculator, 3 synthetic order scoring, 4 build one business report, 5 invoice reconciliation scaffold, 6 optional freestyle), correct optional scope, the closing sentence `Start with the smallest reliable skill, then add complexity one controlled step at a time.`, and a response under 120 words. The response must use plain language with no emoji or em/en dashes. Use colons or full stops between bullet labels and explanations. The old three-level greeting screenshot is labeled historical, not the current expected overview. Compare only observable response qualities when provenance is unavailable. Do not use unrelated prompts whose answer may come from standard agentic reasoning and cannot be attributed to either skill.
 
 Exercise flow:
 
@@ -253,9 +254,39 @@ If live access is blocked, choose another supported option or explicitly start O
 
 Only after building and testing their own skill may participants optionally import a completed reference from `exercises/ex4/facilitator-test-skills/`. Disable their own version, enable the reference plus the chosen path's dependencies, and test in a fresh Agentic Thinking conversation using the same prompt and attachment. Compare against the same checklist, then disable the reference before restoring their own skill. If provenance is hidden, record `Not visible`; never enable both custom versions together or treat the reference as proof of live qualification.
 
-## Exercise 5 - Freestyle (optional / take-home)
+## Exercise 5 - Supplier Invoice Reconciliation
 
 Location: `exercises/ex5/`
+
+Goal: fill in a provided skill scaffold to build a custom Joule skill that reads a supplier invoice PDF, retrieves the matching purchase order from SAP S/4HANA, flags discrepancies, and produces a plain-language summary and an Excel report.
+
+The scaffold files are in `exercises/ex5/invoice-po-reconciliation/`:
+
+- `SKILL.md` - participant fills in `<!-- TODO -->` sections covering extraction, PO retrieval, mismatch handling, and Excel output.
+- `references/reconciliation-rules.md` - participant fills in matching rules, price-deviation formula, status values, and overall-status logic.
+
+A complete solution is in `exercises/ex5/solutions/invoice-po-reconciliation/` for reference after the participant's own attempt.
+
+Dependencies under **Active Skills**: the SAP-published S/4HANA skill confirmed by the facilitator, the `xlsx` output skill, and the participant's imported custom skill.
+
+Test prompt after importing the completed scaffold:
+
+`Please analyse this invoice for inconsistencies and give me a detailed report.`
+
+Attach the sample invoice from `exercises/ex5/sample-data/` when running this prompt. The skill should extract all data from the PDF without asking, detect any currency mismatch between the invoice and the PO, present the user with options rather than converting automatically, then produce an Excel report with a `Summary` sheet and a `Line Items` sheet.
+
+If the SAP S/4HANA capability is unavailable, the skill should ask for a PO fixture file. The participant supplies one matching the format in `references/reconciliation-rules.md`.
+
+Troubleshooting:
+
+- Skill asks for invoice number or PO upfront: the skill should extract these from the PDF. Revise the extraction step in `SKILL.md`.
+- Skill stops silently on currency mismatch: add a mismatch block that presents options to the user.
+- No plain-language analysis before the file: add a step that presents findings conversationally before exporting.
+- `xlsx` skill not under **Active Skills**: enable it under **Explore Skills**.
+
+## Exercise 6 - Freestyle (optional / take-home)
+
+Location: `exercises/ex6/`
 
 Goal: independently define, build, test, and improve an original custom skill for a business use case and output of the participant's choice. This is not required for completing the two-hour core. A conversational response, analysis, or file can be a valid outcome.
 
@@ -306,7 +337,7 @@ Do not broaden access or retry failed retrievals. Exercise 3: use its explicit `
 
 ### Empty result
 
-Exercise 3: a valid empty input or zero live count produces a zero-count summary and CSV headers without data rows. Exercise 4 Option A: an empty Purchase Orders table with the zero-result note on Summary. Exercise 4 Option B: no matching plans means stop without creating a document. Use the appropriate synthetic path when populated records are needed.
+Exercise 3: a valid empty input or zero live count produces a zero-count summary and CSV headers without data rows. Exercise 4 Option A: an empty Purchase Orders table with the zero-result note on Summary. Exercise 4 Option B: no matching plans means stop without creating a document. Exercise 5: if the SAP capability is unavailable and no fixture is supplied, the skill should ask for one rather than proceeding. Use the appropriate synthetic path when populated records are needed.
 
 ## Safety boundaries
 

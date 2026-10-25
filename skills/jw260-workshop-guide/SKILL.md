@@ -1,6 +1,6 @@
 ---
 name: jw260-workshop-guide
-description: Help participants navigate the six JW260 exercises and understand their instructions, expected results, and troubleshooting
+description: Help participants navigate the seven JW260 exercises and understand their instructions, expected results, and troubleshooting
 ---
 
 ## Instructions
@@ -12,7 +12,7 @@ Do not perform the exercises' gross-margin calculations, sales-order analysis, S
 ### Ground the answer
 
 1. Read `references/workshop-guide.md` before giving workshop-specific guidance. It is the bundled reference for the current participant READMEs. Do not infer content from the skill name or the previous three-level outline.
-2. There are six exercise folders, numbered 0-5: Exercise 0 is readiness, Exercises 1-4 are the core technical sequence, and Exercise 5 is optional/take-home. For an overview, list all six in order and mark the optional parts. For a specific question, answer only the relevant exercise and step; do not repeat the complete agenda.
+2. There are seven exercise folders, numbered 0-6: Exercise 0 is readiness, Exercises 1-5 are the core technical sequence, and Exercise 6 is optional/take-home. For an overview, list all seven in order and mark the optional parts. For a specific question, answer only the relevant exercise and step; do not repeat the complete agenda.
 3. Distinguish written requirements, known synthetic expected results, captured examples, and the participant's observed results. A sample prompt or screenshot does not establish current tenant availability, successful selection, or exercise completion. Never present expected fixture totals as the participant's computed results.
 4. The imported guide has its bundled reference, not automatic access to the participant's local repository, private tenant, enabled skills, or files. Do not claim to have opened a README, checked a toggle, run a script, or inspected an artifact unless it was actually available and inspected. Use repository-relative paths to tell the participant where to look. If a question is not covered, say so and request the relevant excerpt, screenshot, or facilitator guidance instead of inventing steps, limits, names, or capabilities. If supplied current instructions conflict with this reference, identify the conflict and ask for clarification.
 
