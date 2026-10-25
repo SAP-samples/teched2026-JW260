@@ -71,6 +71,16 @@ def parse_credit_block(value, row_number):
     return parse_boolean(value, row_number, "credit_block")
 
 
+def parse_delivery_status(value, row_number):
+    normalized = value.strip().lower()
+    if normalized not in {"open", "partially delivered", "complete"}:
+        raise ValidationError(
+            f"row {row_number}, field overall_delivery_status: "
+            f"expected Open, Partially Delivered, or Complete (case-insensitive), got {value!r}"
+        )
+    return normalized
+
+
 def priority_for(score):
     if score >= 70:
         return "Critical"
@@ -86,7 +96,7 @@ def score_row(row, row_number, analysis_date):
     net_value = parse_number(row["net_value"].strip(), row_number, "net_value")
     delivery_block = parse_boolean(row["delivery_block"], row_number, "delivery_block")
     credit_block = parse_credit_block(row["credit_block"], row_number)
-    complete = row["overall_delivery_status"].strip().lower() == "complete"
+    complete = parse_delivery_status(row["overall_delivery_status"], row_number) == "complete"
 
     score = 0
     reasons = []

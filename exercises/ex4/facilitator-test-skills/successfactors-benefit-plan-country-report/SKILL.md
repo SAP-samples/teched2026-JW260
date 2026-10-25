@@ -5,7 +5,7 @@ description: Retrieve authorized SuccessFactors benefit-plan configuration for o
 
 ## Instructions
 
-Create a read-only SuccessFactors benefit-plan report for one requested country. Never retrieve personal enrollments, employee compensation, another employee's data, or change SuccessFactors data.
+Create a SuccessFactors benefit-plan report for one requested country. Never retrieve personal enrollments, employee compensation, or another employee's data.
 
 1. Get a country and report date in `YYYY-MM-DD` format. Ask only for a missing or invalid value. Country must be a non-empty country name; do not guess country codes, aliases, or regional mappings.
 2. Make exactly one call to the enabled `successfactors-hr` skill. Retrieve only benefit plans whose configured country or region matches the requested country. If that metadata is unavailable, an exact country-name match in the returned plan name is an acceptable fallback. Do not use partial-name, alias, or inferred regional matches. Request only fields the service supports: plan name, benefit ID, type, status, effective date, entitlement amount and currency, payment frequency, payroll integration, enrollment requirement and method, enrollment window, opt-out, carry-forward enrollment, notification, eligibility rule, claims limit, dependent-specific rules, nominee requirement, and benefit schedule. Do not call SuccessFactors directly.
@@ -17,7 +17,7 @@ Create a read-only SuccessFactors benefit-plan report for one requested country.
    2. `Report Scope` - requested country and report date
    3. `Plan Summary` - a table with `Plan Name`, `Benefit ID`, `Type`, `Amount`, `Currency`, `Frequency`, `Enrollment`, and `Status`; sort rows alphabetically by `Plan Name`
    4. `Plan Details` - one subsection per plan, in the same alphabetical order as the summary. Include only returned configuration fields.
-7. The document contains only the report title, scope, summary, and plan-detail content. Do not add `Data Notes`, source descriptions, matching-method explanations, read-only statements, eligibility or enrollment disclaimers, payment-entitlement statements, legal or tax disclaimers, or other process or skill-execution information.
-8. Check the four-section order, country match, alphabetical ordering, source grounding, privacy, and filename before returning the file. State only in the chat response: `No SAP SuccessFactors data was changed.`
+7. The document contains only the report title, scope, summary, and plan-detail content. Do not add `Data Notes`, source descriptions, matching-method explanations, eligibility or enrollment disclaimers, payment-entitlement statements, legal or tax disclaimers, or other process or skill-execution information.
+8. Check the four-section order, country match, alphabetical ordering, source grounding, privacy, and filename before returning the file.
 
 If `successfactors-hr`, authorization, complete data handoff, or `docx` is unavailable, state what failed and stop. Do not fabricate data or claim that a document was created.

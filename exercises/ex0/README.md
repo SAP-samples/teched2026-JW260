@@ -2,67 +2,46 @@
 
 ## Goal
 
-Sign in to the workshop environment, prepare the repository files, and confirm that Joule Work is ready before starting the technical exercises.
-
-## What You Need
-
-- The workshop tenant URL supplied by your facilitator.
-- The workshop identity assigned to you by your facilitator.
-- This repository, downloaded or cloned to your computer.
+Sign in, prepare the workshop files, and confirm that you can import and test a custom skill. Complete this readiness exercise before Exercises 1-4; the optional exploration below is not required.
 
 ## Step 1: Sign In
 
 1. Open the workshop tenant URL supplied by your facilitator.
-2. Sign in with your assigned workshop identity.
-3. Complete the authentication process if prompted.
-4. Confirm that Joule Work opens successfully.
+2. Sign in with your assigned workshop identity and complete authentication if prompted.
+3. Confirm that Joule Work opens.
 
-The empty conversation screen is your starting point. The exact greeting can vary by time of day.
-
-If sign-in fails, stop and contact the facilitator. Do not use another participant's identity.
+If sign-in fails, contact the facilitator. Do not use another participant's identity.
 
 ## Step 2: Check Joule Work Access
 
-1. Confirm that agentic thinking mode is available. You will select it when testing skills in the exercises. You can test if it is there by opening a new conversation > +-icon > agentic thinking
+1. Start a new conversation. In the message input, select **+ > Agentic Thinking**.
 
-![Joule Work new conversation screen with the message input ready](images/00-05-agentic-thinking.png)
+   ![Message input with Agentic Thinking available](images/00-05-agentic-thinking.png)
 
 2. Open **User menu > Explore Skills**.
 
    ![User menu with Explore Skills available](images/00-02-user-menu-explore-skills.png)
 
-3. Confirm that you can open **My Skills**.
-4. Look for the **Import** control.
-   - If it is available, you will import the exercise skills yourself.
+3. Confirm that you can open **My Skills** and see **Import**.
 
-The Explore Skills page provides **My Skills**, **Active Skills**, and the **Import** control:
+   ![Explore Skills page with tabs and Import control](images/00-03-explore-skills-import.png)
 
-![Explore Skills page with tabs and Import control](images/00-03-explore-skills-import.png)
+If **Import** is missing, ask the facilitator about preimported examples or pairing with an authorized participant. You may inspect and test a preimported skill, but you still need an authorized import path to test your own edits. If **Agentic Thinking** is missing, stop and ask the facilitator.
 
-Selecting **Import** opens the skill import dialog. It also states the custom-skill sandbox boundary:
+## Step 3: Prepare the Files
 
-![Import Skill dialog with folder and file controls and the no-network security notice](images/00-04-import-skill-dialog.png)
-
-
-## Step 3: Prepare the Workshop Files
-
-1. Download or clone this repository.
-2. Open the repository and locate the `exercises` folder.
-3. Confirm that it contains `ex0`, `ex1`, `ex2`, `ex3`, `ex4`, and `ex5`.
-4. Open `exercises/ex1/` and confirm that both `broad-greeter/` and `workshop-greeter/` contain a `SKILL.md` file.
+1. Download or clone this repository. If downloaded as a ZIP, extract it.
+2. Locate `exercises/ex0/` through `exercises/ex5/`.
+3. In `exercises/ex1/`, confirm that `broad-greeter/` and `workshop-greeter/` each contain `SKILL.md`.
 
 ## Step 4: Understand Import Formats
 
-Joule Work imports either a `SKILL.md` file directly or an unzipped skill folder. Do not create a ZIP archive for this workshop.
+The workshop tenant's import dialog supports an individual `SKILL.md` or an unzipped skill folder. **Do not create a skill ZIP for import.** A repository ZIP or a source package attached to a conversation is different from catalog import.
 
-For a simple skill, select its `SKILL.md` file:
+![Import dialog with file/folder choices and the no-network security notice](images/00-04-import-skill-dialog.png)
 
-```text
-workshop-greeter/
-└── SKILL.md
-```
-
-For a skill with supporting files, select the complete unzipped skill folder so its `SKILL.md` and referenced files stay together:
+- **Simple skill:** choose `SKILL.md` directly.
+- **Supporting files:** choose the complete folder, with `SKILL.md` at its root and supporting files one subfolder level below it.
 
 ```text
 gross-margin-calculator/
@@ -73,6 +52,7 @@ gross-margin-calculator/
     └── calculate_margin.py
 ```
 
+Custom skill scripts run without external network access. They process supplied data; SAP-published capabilities handle authorized business-system retrieval.
 
 ## Step 5: First Interaction
 
@@ -98,7 +78,7 @@ The workshop exercises focus on custom skills you build yourself. Before you sta
 
 1. Open **User menu > Explore Skills**.
 2. On the **Published by SAP** tab, find the SAP-published skills. They appear alongside any custom skills you have imported. SAP-published skills are marked with SAP as the publisher.
-3. Enable `S4 HANA public` and `Successfactors HCM` using the toggle on each card.
+3. Enable `s4hana-public-cloud` and `successfactors-hr` using the toggle on each card.
 4. Confirm that both appear under **Active Skills**.
 5. Open a new conversation and enable agentic thinking mode.
 
@@ -129,14 +109,12 @@ Joule identifies your user account automatically and returns live data from Succ
 
 ## Readiness Check
 
-Before continuing, confirm all applicable items:
+Confirm that:
 
-- [ ] I can sign in to the workshop tenant with my assigned identity.
-- [ ] Joule Work opens successfully.
-- [ ] I can open **User menu > Explore Skills > My Skills**.
-- [ ] I can import skills, or the facilitator has confirmed the preimported-skill fallback.
-- [ ] Agentic thinking mode is available.
-- [ ] I have the repository and can locate all six exercise folders.
-- [ ] I understand when to import a `SKILL.md` file or an unzipped skill folder.
+- you are signed in with your assigned workshop identity;
+- **Agentic Thinking** and **Explore Skills** are available;
+- you can import skills, or the facilitator has arranged an authorized alternative;
+- the repository is extracted and you can locate the exercise files;
+- you know when to import a file versus a complete folder.
 
 Continue to - [Exercise 1: Compare Skill Behavior](../ex1/README.md)

@@ -1,4 +1,6 @@
-# Exercise 5: Freestyle
+# Exercise 5: Freestyle (Optional Stretch or Take-Home)
+
+This is an optional extension after the core exercises. Use spare workshop time or return to it later; it is not required to complete the workshop.
 
 ## Goal
 
@@ -10,7 +12,7 @@ You can write `SKILL.md` manually or ask Joule to draft it from your requirement
 
 Choose a concrete business purpose and decide what the skill should return. Your result may be a conversational response, analysis, workflow, PowerPoint, Word document, Excel workbook, or another artifact supported by the workshop environment.
 
-Unlike Exercise 4, this exercise does not prescribe the business scenario, input fields, transformation rules, or output format. You define the success criteria before you build the skill.
+Unlike Exercise 4, this exercise does not prescribe the business scenario, input fields, transformation rules, or output format. You define the success criteria before you build the skill. Use supplied or authorized data and the capabilities available in the workshop environment.
 
 If your outcome creates a Microsoft Office file, enable the corresponding SAP-published output skill in **Explore Skills** before testing: `docx` for Word, `pptx` for PowerPoint, or `xlsx` for Excel. Confirm that it appears under **Active Skills** together with any business skill your scenario needs.
 
@@ -27,12 +29,12 @@ If your outcome creates a Microsoft Office file, enable the corresponding SAP-pu
    - the exact output structure;
    - the output format and filename when a file is required;
    - the behavior when information is missing;
-   - a final check before returning the file.
+   - a final check before returning the response or file.
 7. If your skill needs a script, reference, or other supporting file, add it in the appropriate subfolder and explain when Joule should use it.
-8. Import the complete unzipped skill folder. Enable your custom skill and every business or output skill it depends on, confirm they appear under **Active Skills**, and select agentic thinking mode.
+8. Follow [Importing a skill](../../README.md#importing-a-skill). Enable your custom skill and every business or output skill it depends on, confirm they appear under **Active Skills**, and start a new **Agentic Thinking** conversation.
 9. Run the skill and inspect the result. If it creates a file, download and open it; a successful download alone is not enough.
 10. Compare the result with the success criteria you defined before building.
-11. Improve one aspect of the skill and run it again.
+11. Improve one aspect of the source. Follow [Replacing an imported skill](../../README.md#replacing-an-imported-skill) and confirm the custom skill and dependencies under **Active Skills**. Retest the same request in a new **Agentic Thinking** conversation.
 
 ## Expected result
 
@@ -60,6 +62,6 @@ The skill achieves the outcome and success criteria you defined, uses only suppl
 
 ## Summary
 
-You designed, built, tested, and improved an original custom skill that produces a reusable business artifact.
+If you completed this optional extension, you designed, built, tested, and improved an original custom skill that produces a reusable conversational response, analysis, or supported artifact against your own success criteria.
 
 Return to - [JW260 Workshop Overview](../../README.md)

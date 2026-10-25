@@ -1,12 +1,12 @@
 # Exercise 4 Appendix: Improve a Skill with Joule
 
-If you find a defect, ask Joule to explain it and suggest how to improve your skill. This optional example shows the process for an incorrect purchase-order date.
+If you find a defect, ask Joule to explain it and suggest how to improve your skill. This optional example follows an incorrect purchase-order date through diagnosis, a skill update, and the opened workbook showing the corrected date.
 
 ## 1. Identify the defect
 
-The Excel report showed `1970-01-21` for PO `4500078413`, outside the requested date range. Joule traced it to a timestamp-conversion mistake and showed the corrected date, `2026-03-13`.
+The Excel report showed `1970-01-21` for PO `4500078413`, outside the requested date range. Joule attributed it to a timestamp-conversion mistake and proposed `2026-03-13` as the corrected date. Check the output rather than relying on the diagnosis alone.
 
-![Joule explaining the timestamp error and showing the corrected date](images/04-09-s4-date-error-diagnosis.png)
+![Joule diagnosing a timestamp error and proposing a corrected date](images/04-09-s4-date-error-diagnosis.png)
 
 ## 2. Ask for an improvement
 
@@ -26,8 +26,12 @@ Joule returned an updated skill package for download.
 
 ## 4. Reimport and verify
 
-Download and extract the package, review the changes, remove the old imported custom skill, and import and enable the replacement. Keep the required business and output skills enabled.
+Download and extract the package and review the changes. Disable and remove the old imported custom skill, then follow [Importing a skill](../../README.md#importing-a-skill) to import and enable the replacement. Confirm the replacement, `s4hana-public-cloud`, and `xlsx` under **Active Skills** for a live retest. For a synthetic retest, only the replacement and `xlsx` are required; attach the same CSV and make no backend call.
 
-Run the same sample prompt in a new conversation, open the new workbook, and check the corrected date, sorting, and the rest of the [Option A checklist](README.md#verify-the-output).
+Start a new **Agentic Thinking** conversation, run the unchanged sample prompt, open the new workbook, and validate dates against the source and filters, sorting, and the rest of the [Option A checklist](README.md#option-a-checklist). Do not describe the defect as fixed until this output has been checked.
 
-[Return to Exercise 4](README.md) · [Continue to Exercise 5](../ex5/README.md)
+The updated workbook capture shows PO `4500078413` with Creation Date **`2026-03-13`**, replacing the incorrect `1970-01-21`. The visible table has the five required columns and follows the required sort order. Check the `Summary` sheet separately; it is not shown in this capture.
+
+![Opened updated purchase-order table showing the corrected 2026-03-13 date for PO 4500078413](images/04-12-s4-updated-skill-purchase-order-list.png)
+
+[Return to Exercise 4](README.md) · [Optional Exercise 5](../ex5/README.md)

@@ -1,57 +1,51 @@
 # Facilitator Test Skills for Exercise 4
 
-These reference skills are primarily for facilitator qualification before the workshop. Participants should first build and test their own skill from the [Exercise 4 requirements](../README.md). After completing that work, they may import the matching reference skill for the optional comparison described there. Disable the participant's custom version while testing the reference version so the two do not compete for selection.
+These completed references support facilitator qualification. Participants first build and test their own skill from the [Exercise 4 contracts](../README.md); comparison is optional. Disable the participant version while testing a reference so they do not compete for selection. These sources and captured examples do not establish qualification of the current tenant.
 
-## Required active skills
+## Dependencies and import
 
-| Reference skill | Required SAP-published skills |
+| Reference and path | Required SAP-published skills |
 | --- | --- |
-| `s4-purchase-order-excel-report` | facilitator-confirmed `s4hana-public-cloud` or `s4hana-private-cloud`, plus `xlsx` |
-| `successfactors-benefit-plan-country-report` | `successfactors-hr`, plus `docx` |
-<!-- SAP Ariba Buying reference temporarily disabled because the live composed use case could not be qualified reliably.
-| `ariba-buying-requisition-item-review` | facilitator-confirmed SAP Ariba Buying skill, plus `pptx` |
--->
+| `s4-purchase-order-excel-report`, live | `s4hana-public-cloud`, plus `xlsx` |
+| `s4-purchase-order-excel-report`, synthetic CSV | `xlsx` only; no backend call |
+| `successfactors-benefit-plan-country-report`, live | `successfactors-hr`, plus `docx` |
 
-Enable the business skill, output skill, and imported reference skill. Confirm all three under **Active Skills** and select agentic thinking mode.
-
-## Package and import
-
-Import the complete named folder unzipped so that it includes its root `SKILL.md` and all supporting files. Do not create ready-to-import archives in this directory.
+Follow [Importing a skill](../../../README.md#importing-a-skill): import `SKILL.md` directly for a simple skill or the complete unzipped named folder when it contains supporting files. Do not create import archives here. For a replacement, disable and remove the old imported copy before importing the updated source. Enable the reference and every dependency for the chosen path, confirm them under **Active Skills**, and start a new conversation with **Agentic Thinking** explicitly selected before each qualification or retest.
 
 ## Qualification requests
 
-Replace the example filter values with values supported by the workshop tenant.
+Use facilitator-confirmed live values when the examples are unsupported, and keep prompts unchanged for comparisons. The participant exercise contains the same requests. Download and open each generated file; the written contract takes precedence over visual variation and captured counts.
 
-These same sample prompts appear in the participant exercise alongside the screenshots and verification checklists. Wording and visual formatting can vary slightly, but clear instructions should produce highly similar content and structure. Live records may differ; the exercise's written output contract remains the acceptance criterion.
+### Option A: live SAP S/4HANA
 
-### SAP S/4HANA
+```text
+Create a purchase-order Excel report for purchasing organization D3US, all suppliers, creation dates 2026-01-01 through 2026-10-20, currency EUR, with report date 2026-10-20.
+```
 
-`Create a purchase-order Excel report for purchasing organization D3US, all suppliers, creation dates 2026-01-01 through 2026-10-20, currency EUR, with report date 2026-10-20.`
+Expected artifact: `purchase-order-report.xlsx`; check the [Option A contract and checklist](../README.md#option-a-contract). Require exactly one `s4hana-public-cloud` detail call, with filters and sorting applied before the 20-row limit. No status/net-value criterion, count request, pagination, retry, or alternate service. An error, partial/truncated response, missing required field, or unsupported filter stops the run without a workbook. A successful zero-result response produces an empty table, not a message row. Live `Summary` must identify its source and bounded scope without a total matching count or completeness claim.
 
-Expected artifact: `purchase-order-report.xlsx`. Verify it against Option A in `../README.md`.
+### Option A: explicit synthetic CSV fallback
 
-The expected live behavior is one detail request capped at 20 rows, with no status or net-value criterion, separate count, pagination, alternate-service probing, or retry. If that request fails, the skill must stop rather than trigger repeated backend calls.
+Attach [`purchase-orders.csv`](../sample-data/purchase-orders.csv) and run:
 
-### SAP SuccessFactors
+```text
+Use only the attached synthetic workshop CSV purchase-orders.csv; do not call SAP. Create a purchase-order Excel report for purchasing organization DEMO, all suppliers, creation dates 2026-01-01 through 2026-10-20, currency EUR, with report date 2026-10-20. Label the Summary source as Synthetic workshop CSV: purchase-orders.csv, state that no live retrieval occurred, and make no live completeness claims.
+```
 
-`Create a SuccessFactors benefit-plan report for Germany with report date 2026-10-20.`
+This is invented workshop data with five source columns: `Purchase Order`, `Supplier`, `Purchasing Organization`, `Creation Date`, `Currency`. It is not retrieved SAP data. Require no backend call, filtering over the supplied rows, sorting all matches before the local 20-row limit, and the same workbook filename, worksheets, and columns as the live contract. The `Summary` source must be synthetic and must not imply live retrieval or live completeness.
 
-Expected artifact: `benefit-plans-germany.docx`. Verify it against Option B in `../README.md`.
+If live access fails, choose a supported option or explicitly start this synthetic path; never silently substitute data or keep retrying. If `xlsx` is unavailable, escalate and record the run as blocked, not complete. A local fixture check is not an end-to-end Joule or live-tenant qualification.
 
-The expected live behavior is exactly one `successfactors-hr` call for benefit plans whose country or region matches Germany. If country/region metadata is unavailable, an exact `Germany` name match is allowed; partial, alias, and inferred regional matches are not allowed. The Word document must contain only the title, requested-country/report-date scope, plan summary, and plan details—no Data Notes, matching-method explanation, disclaimers, or skill-execution information. The skill must retrieve only returned plan configuration fields, exclude personal enrollments and compensation data, and stop on the first error, partial or truncated result without retrying or switching services.
+### Option B: live SAP SuccessFactors
 
-<!-- SAP Ariba Buying qualification temporarily disabled because the live composed use case could not be qualified reliably.
+```text
+Create a SuccessFactors benefit-plan report for Germany with report date 2026-10-20.
+```
 
-### SAP Ariba
+Expected artifact: `benefit-plans-germany.docx`; check the [Option B contract and checklist](../README.md#option-b-contract). Require exactly one `successfactors-hr` call for plans matching the requested country or region. Only when metadata is unavailable may the returned plan name supply an exact country-name match; no partial, alias, or inferred regional matching. On the first error, partial/truncated result, or no matching plans, stop without a document, retry, or alternate service.
 
-`Create an SAP Ariba Buying requisition-item review PowerPoint for plant 1710, fixed vendor USSU-V100, delivery dates 2023-08-01 through 2023-08-31, with report date 2026-10-21.`
+The Word file contains only title, country/report-date scope, plan summary, and plan details. No Data Notes, matching-method explanation, disclaimers, or skill-execution information. Use returned plan configuration, never personal enrollments or compensation. There is no SuccessFactors fixture; use a supported option or Option A's synthetic path if blocked.
 
-Expected artifact: `requisition-item-review.pptx`. Verify it against Option C in `../README.md`.
+## Qualification evidence
 
-The expected live behavior is exactly one SAP Ariba Buying request capped at 20 purchase requisition items. It must preserve requisition and item identifiers separately and use only returned item-level fields. On the first error, partial result, or truncated result, it must stop without retrying or switching to SAP Ariba Sourcing.
-
--->
-
-## Qualification result
-
-Record the exact business skill used, supported fields, authorization scope, whether business data was handed to the custom skill, whether the Office artifact opened successfully, and every deviation from the expected output. Do not describe an option as workshop-ready until the complete path succeeds with a clean participant identity.
+Record the actual source path, business skill used (none for synthetic), supported fields, authorization scope for live data, data handoff, whether the Office file opened, and every deviation from the contract. Inspect visible execution details for forbidden retries or alternate services; do not claim an exact observed backend-call count unless those details expose it. Do not describe a live option as workshop-ready until its complete path succeeds with a clean participant identity and representative non-empty data. Qualify the synthetic output path separately; neither static validation nor a synthetic report proves live access.
