@@ -122,7 +122,7 @@ Try these prompts one at a time:
 
 Joule identifies your user account automatically and returns live data from SuccessFactors.
 
-> [!note]
+> [!NOTE]
 > The exact values you see depend on the workshop identity assigned to you. Counts and names will differ from the screenshots in JW160. If a skill toggle is not visible, the skill is not available in this tenant — skip that section and continue to the Readiness Check.
 
 ---

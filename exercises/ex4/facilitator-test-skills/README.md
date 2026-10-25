@@ -1,6 +1,6 @@
 # Facilitator Test Skills for Exercise 4
 
-These reference skills are for facilitator qualification before the workshop. Participants should build their own skill from the Exercise 4 requirements rather than import these finished versions.
+These reference skills are primarily for facilitator qualification before the workshop. Participants should first build and test their own skill from the [Exercise 4 requirements](../README.md). After completing that work, they may import the matching reference skill for the optional comparison described there. Disable the participant's custom version while testing the reference version so the two do not compete for selection.
 
 ## Required active skills
 
@@ -21,6 +21,8 @@ Import the complete named folder unzipped so that it includes its root `SKILL.md
 ## Qualification requests
 
 Replace the example filter values with values supported by the workshop tenant.
+
+These same sample prompts appear in the participant exercise alongside the screenshots and verification checklists. Wording and visual formatting can vary slightly, but clear instructions should produce highly similar content and structure. Live records may differ; the exercise's written output contract remains the acceptance criterion.
 
 ### SAP S/4HANA
 

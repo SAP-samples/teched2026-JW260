@@ -4,6 +4,10 @@
 
 Choose one defined SAP S/4HANA or SAP SuccessFactors outcome, create the custom skill manually or with Joule, and verify the generated business document against the expected output.
 
+> [!NOTE]
+> **Compare the result, not every pixel**
+> Wording, colors, table widths, and page breaks may vary slightly from the screenshots. Clear skill instructions should still produce highly similar report content and structure. Run the sample prompt for your chosen option, compare the response and downloaded file with the screenshots, and verify every checklist item. Live records and counts can differ by workshop identity or tenant. The written output contract takes precedence over the screenshots; a different required filename, missing section, invalid date, or incorrect sort order is a defect to fix, not acceptable variation.
+
 ## Choose one scenario
 
 Complete one of the following two currently supported scenarios. The business outcome and output format are fixed; you design the skill that achieves them.
@@ -43,7 +47,8 @@ Create a custom skill that asks for these filters:
 - one specific purchasing organization;
 - supplier, or `all suppliers`;
 - purchase-order creation date range;
-- currency.
+- currency;
+- report date in `YYYY-MM-DD` format.
 
 The skill uses an available SAP S/4HANA capability to retrieve matching purchase orders and creates `purchase-order-report.xlsx`.
 
@@ -59,7 +64,31 @@ The workbook must contain:
 3. One row per retrieved purchase order, sorted by creation date descending and then purchase-order number ascending, with at most 20 rows.
 4. A clear note that the live result is bounded and may not represent all matching records.
 
-The qualified workshop service did not return a meaningful header-level net-value field. The live skill therefore must not request, filter, sort, or total by net value. It must make one narrowly filtered detail request and must not make a separate count request, fetch additional pages, probe alternative services, or retry after a failed detail request. On the first retrieval failure, it stops and asks for a facilitator-approved CSV fallback.
+Keep this report limited to the five specified columns and at most 20 matching purchase orders. Do not include monetary totals or retrieve additional pages.
+
+### Sample prompt
+
+Run this request with your custom skill enabled:
+
+```text
+Create a purchase-order Excel report for purchasing organization D3US, all suppliers, creation dates 2026-01-01 through 2026-10-20, currency EUR, with report date 2026-10-20.
+```
+
+Use these values when supported by the workshop tenant; otherwise ask the facilitator for supported values and keep your chosen prompt unchanged when retesting. Expected artifact: `purchase-order-report.xlsx`.
+
+### Compare with the screenshots
+
+Compare Joule's response and the downloaded workbook with these captured examples:
+
+![Captured S/4HANA response to the purchase-order report sample prompt](images/04-02-s4-purchase-order-response.png)
+
+![Purchase-order workbook summary showing the report filters and bounded retrieval limit](images/04-03-s4-purchase-order-summary.png)
+
+![Purchase-order table showing the five required columns](images/04-04-s4-purchase-order-list.png)
+
+> [!TIP]
+> **A real defect is an opportunity to improve the skill**
+> The table screenshot is a **before** example: PO `4500078413` displays `1970-01-21`, outside the requested range. The [date-fix appendix](appendix-date-fix.md) shows how the tester asked Joule to explain the error, supplied the source skill, and obtained an improved package for reimport and retesting. Do not reproduce the date error or trust the chat summary alone; validate the opened workbook. The captured count of 14 is illustrative, not a required result.
 
 ### Verify the output
 
@@ -73,7 +102,6 @@ Open `purchase-order-report.xlsx` and confirm:
 - no more than 20 purchase-order rows are present;
 - a zero-result workbook has an empty table below the headers rather than a message row;
 - values are not converted between currencies;
-- no purchase order was created, changed, approved, or released.
 
 ## Option B: SAP SuccessFactors - Benefit-Plan Country Report
 
@@ -81,7 +109,7 @@ Open `purchase-order-report.xlsx` and confirm:
 
 Create a custom skill that asks for a country and report date, retrieves the signed-in participant's authorized benefit-plan data with `successfactors-hr`, and creates `benefit-plans-<country-slug>.docx` with the `docx` skill. For example, the country `Germany` produces `benefit-plans-germany.docx`.
 
-Validate that country is a non-empty country name and that report date uses `YYYY-MM-DD`. Make exactly one call to `successfactors-hr`. Retrieve only benefit plans whose configured country or region matches the requested country. If that metadata is unavailable, an exact country-name match in the returned plan name is an acceptable fallback; state this matching method in `Data Notes`. Do not use partial-name, alias, or inferred regional matches. Retrieve the returned plan name, benefit ID, type, active status, effective date, entitlement amount and currency, payment frequency, payroll integration, enrollment method and requirement, eligibility rule, and any returned opt-out, carry-forward, notification, claims-limit, dependent, or nominee information. Do not retrieve personal enrollments, employee compensation, another employee's data, or benefit plans outside the requested country.
+Validate that country is a non-empty country name and that report date uses `YYYY-MM-DD`. Make exactly one call to `successfactors-hr`. Retrieve only benefit plans whose configured country or region matches the requested country. If that metadata is unavailable, an exact country-name match in the returned plan name is an acceptable fallback. Do not use partial-name, alias, or inferred regional matches. Retrieve the returned plan name, benefit ID, type, active status, effective date, entitlement amount and currency, payment frequency, payroll integration, enrollment method and requirement, eligibility rule, and any returned opt-out, carry-forward, notification, claims-limit, dependent, or nominee information. Do not retrieve personal enrollments, employee compensation, another employee's data, or benefit plans outside the requested country.
 
 On any error, including authorization, connection, timeout, partial result, or truncated result, do not retry, switch services, or probe alternatives. Report the first error and stop. If the response contains no matching plans, create no document; state that no matching benefit plans were returned.
 
@@ -94,19 +122,42 @@ The document must contain these sections in this order:
 
 The document contains only the report title, scope, summary, and plan-detail content. Do not add `Data Notes`, source descriptions, matching-method explanations, read-only statements, eligibility or enrollment disclaimers, payment-entitlement statements, legal or tax disclaimers, or any other process or skill-execution information.
 
+### Sample prompt
+
+Run this request with your custom skill enabled:
+
+```text
+Create a SuccessFactors benefit-plan report for Germany with report date 2026-10-20.
+```
+
+Use Germany when supported by the workshop tenant; otherwise ask the facilitator for a supported country and keep your chosen prompt unchanged when retesting. Expected artifact for Germany: `benefit-plans-germany.docx`.
+
+### Compare with the screenshots
+
+Compare Joule's response, download link, and the opened Word document with these captured examples:
+
+![SuccessFactors response showing the Germany benefit-plan summary](images/04-05-successfactors-benefit-plan-response.png)
+
+![SuccessFactors response showing the Word download and report structure](images/04-06-successfactors-benefit-plan-download.png)
+
+![Word report showing the Germany report scope and plan summary](images/04-07-successfactors-benefit-plan-summary.png)
+
+![Word report showing the Car Allowance Germany plan details](images/04-08-successfactors-benefit-plan-details.png)
+
+The captured run contains six plans. Your authorized data may differ; verify the required sections, columns, ordering, and returned values rather than copying the example's plan count or amounts. Include only available fields in `Plan Details`, even where the screenshot displays an unavailable field.
+
 ### Verify the output
 
 Open `benefit-plans-<country-slug>.docx` and confirm:
 
 - all four sections exist in the required order;
 - the report scope shows the requested country and report date;
-- every summary row matches the selected country through returned country/region metadata or the disclosed exact plan-name fallback;
+- every summary row matches the selected country through returned country/region metadata or the exact country-name fallback in the returned plan name;
 - the summary uses the required columns and alphabetical plan-name order;
 - every plan has one detail subsection in the same order as the summary;
 - details preserve the returned values and do not invent unavailable fields;
 - the document has no `Data Notes`, source or matching-method explanation, read-only statement, eligibility/enrollment/payment disclaimer, or legal/tax disclaimer;
 - no personal enrollment, compensation, unsupported employee information, or plans outside the requested country appear;
-- no SuccessFactors data was created or changed.
 
 <!-- SAP Ariba Buying option temporarily disabled because the live composed use case could not be qualified reliably.
 
@@ -156,33 +207,36 @@ Open `requisition-item-review.pptx` and confirm:
 4. Build the skill manually or ask Joule to help draft it.
 5. Ensure the skill defines its purpose, required filters, retrieval handoff, validation, exact output structure, sorting, missing-data behavior, and read-only boundary.
 6. Import the complete unzipped skill folder, enable it, and select agentic thinking mode.
-7. Run the skill with filter values supported by the workshop data.
+7. Run the sample prompt for your selected option, using facilitator-confirmed values if the examples are unsupported.
 8. Download and open the generated file.
-9. Verify it against the checklist for your selected option.
+9. Compare the response and file with the screenshots, then verify every checklist item for your selected option.
 10. If a check fails, improve the skill, reimport it, and run the same request again.
 
-## Troubleshooting
+## FYI — Tips for improving your skill
 
-| Problem | Action |
-| --- | --- |
-| The required SAP-published capability is unavailable | Choose another option or ask the facilitator which scenario is supported by the tenant. |
-<!-- SAP Ariba troubleshooting is temporarily disabled with Option C.
-| SAP Ariba Sourcing is unavailable but SAP Ariba Buying works | Use Option C's Buying requisition-item outcome; do not substitute or probe Sourcing. |
--->
-| The `xlsx`, `docx`, or `pptx` skill is disabled | Enable the output skill for your option under **Explore Skills**, then confirm it appears under **Active Skills**. |
-| A required field cannot be retrieved | Do not invent it. Ask the facilitator whether another option is supported. |
-| Retrieved data cannot be handed to the custom skill | State the limitation and use facilitator-approved synthetic data if available. |
-| The S/4HANA detail request fails | Stop after the first failure. Do not retry or probe other services; use a facilitator-approved CSV fallback if available. |
-| The generated file cannot be opened | Check the requested format, filename, and generation instructions, then regenerate it. |
-| The environment cannot generate the required file type | Preserve the same content and structure in a facilitator-approved fallback; do not claim that the target file was created. |
-| The request would change business data | Stop and revise the skill so it remains read-only. |
+- If you detect a defect, ask Joule to explain it and suggest improvements.
+- Attach your own `SKILL.md` or source package and ask Joule to update it. Download, extract, and review the result before replacing the old imported custom skill.
+- Retest the same prompt in a new conversation and verify the opened file against the checklist.
+
+See [Appendix: Improve a Skill with Joule](appendix-date-fix.md) for a short illustrated date-fix example. This is optional troubleshooting guidance, not an additional required scenario.
+
+## Optional: compare with the facilitator reference skill
+
+After building and testing your own skill, you can import the completed reference version for comparison:
+
+1. Open the matching folder in [`facilitator-test-skills`](facilitator-test-skills/README.md): [`s4-purchase-order-excel-report`](facilitator-test-skills/s4-purchase-order-excel-report/) for Option A or [`successfactors-benefit-plan-country-report`](facilitator-test-skills/successfactors-benefit-plan-country-report/) for Option B.
+2. Import its `SKILL.md` through **Explore Skills > Import** (or the complete unzipped folder if it contains supporting files).
+3. Disable your own custom skill and enable the reference skill. Keep the required business and output skills enabled and confirm all three under **Active Skills**.
+4. Start a new conversation, select agentic thinking mode, and run exactly the same prompt and filter values used to test your own skill.
+5. Download the reference output and compare both reports against the screenshots and verification checklist. Identify any instruction you need to improve in your own skill; the reference output is not a substitute for validating returned data.
+6. Disable the reference skill before re-enabling and retesting your own skill in a new conversation.
+
+Do not enable both custom versions at once: overlapping descriptions can make it unclear which skill ran. If skill provenance is not visible, record `Not visible` and compare only observable behavior. Neither version may retry a failed backend request or bypass authorization.
+
 
 ## Expected result
 
-You created one custom skill that meets a predefined line-of-business outcome and generated a report that passes every applicable verification check.
+You created one custom skill that meets a predefined line-of-business outcome and generated a report in a harmonized way.
 
-## Summary
-
-You translated a defined SAP business outcome into a custom skill, combined it with authorized data retrieval, generated a business file, and verified the result against a fixed contract.
 
 Continue to - [Exercise 5 - Freestyle](../ex5/README.md)

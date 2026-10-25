@@ -58,6 +58,10 @@ After completing the exercises, you will be able to:
 
 Complete the exercises in order. Later exercises build on the metadata, validation, supporting-file, and safety concepts introduced earlier.
 
+> [!NOTE]
+> **Outputs may vary**
+> Joule's wording and visual formatting can vary slightly from the screenshots and between runs. Skills with clear instructions should still produce highly similar content and structure. Use each exercise's exact prompt, expected result, and verification checklist to check your output; required values, filenames, sections, sorting, and safety boundaries must still match. Live business data may differ by workshop identity or tenant.
+
 ## JW260 Workshop Guide skill
 
 The repository also includes the optional [`jw260-workshop-guide`](skills/jw260-workshop-guide/) support skill. It is not a separate exercise. Import and enable it if you want to ask Joule questions such as:

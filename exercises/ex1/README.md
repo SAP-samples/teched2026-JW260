@@ -53,7 +53,8 @@ The recommended skill produces the three learning levels and exact closing sente
 
 ![Workshop greeting response with three learning levels and the required closing sentence](images/01-03-workshop-greeting-result.png)
 
-> [!note] Selection is not deterministic
+> [!NOTE]
+> **Selection is not deterministic**
 > Skill selection can vary between runs, tenants, and surrounding conversation. A flawed skill is not guaranteed to fail on every prompt. Your evidence is the behavior observed across repeated prompts, not a promised routing result or guaranteed failure.
 
 ## Diagnose - 4 Minutes

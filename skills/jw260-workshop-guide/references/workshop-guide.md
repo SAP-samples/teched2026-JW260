@@ -159,6 +159,17 @@ Agentic Thinking may complete a similar one-off request without a custom skill. 
 
 The currently supported options are a filtered S/4HANA purchase-order Excel workbook and a country-specific SuccessFactors benefit-plan report in Word. Each option defines required filters, report structure, sorting, and a verification checklist in `exercises/ex4/README.md`. The SAP Ariba Buying option is temporarily disabled because its live composed use case has not been qualified reliably.
 
+Sample prompts:
+
+- S/4HANA: `Create a purchase-order Excel report for purchasing organization D3US, all suppliers, creation dates 2026-01-01 through 2026-10-20, currency EUR, with report date 2026-10-20.`
+- SuccessFactors: `Create a SuccessFactors benefit-plan report for Germany with report date 2026-10-20.`
+
+Use facilitator-confirmed values if these examples are unsupported, then keep the same request for retesting. Participants compare the chat response and downloaded artifact with the screenshots in the exercise and verify every checklist item. Clear instructions should produce highly similar content and structure, although wording, formatting, and live data may vary. The written contract takes precedence. The S/4HANA table screenshot is a before-example containing an out-of-range date; it must not be copied as a correct result.
+
+For defects, use the FYI tips and optional `exercises/ex4/appendix-date-fix.md` illustrated example: ask Joule to explain the issue and suggest improvements, attach your own source skill for revision, review and reimport the updated package, and retest the same prompt against the checklist.
+
+After building and testing their own skill, participants may import the matching reference from `exercises/ex4/facilitator-test-skills/` for optional comparison. Disable their own custom version, enable the reference together with the business and output skills, start a new conversation in agentic thinking mode, and run the identical prompt. Compare both reports against the screenshots and checklist, then disable the reference before re-enabling and retesting their own skill. Never enable both custom versions together or treat the reference output as a substitute for data validation.
+
 Before participants build or run the skill, they must enable the required business skill and output skill under **Explore Skills** and confirm both under **Active Skills**. Use `xlsx` for the S/4HANA option and `docx` for SuccessFactors. The S/4HANA option uses the facilitator-confirmed `s4hana-public-cloud` or `s4hana-private-cloud` skill; SuccessFactors uses `successfactors-hr`.
 
 The exact SAP-published skill name and fields depend on the workshop tenant. Do not invent a capability name or claim that the custom skill connects directly to an SAP backend. If the capability or data handoff is unavailable, choose another available scenario or use facilitator-approved synthetic data.
