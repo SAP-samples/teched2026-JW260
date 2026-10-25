@@ -13,23 +13,23 @@ Agentic Thinking may already produce a similar file from a one-off request. Your
 
    | Path | Business skill | Output skill |
    | --- | --- | --- |
-   | Option A, live | `s4hana-public-cloud` | `xlsx` |
-   | Option A, synthetic CSV | None; use the attached sample data only | `xlsx` |
-   | Option B, live | `successfactors-hr` | `docx` |
+   | Option A, live | `SAP S/4HANA Cloud Public Edition` | `Excel` |
+   | Option A, synthetic CSV | None; use the attached sample data only | `Excel` |
+   | Option B, live | `SAP SuccessFactors HCM` | `Word Documents` |
 
 3. Create a lowercase, hyphenated folder containing `SKILL.md`. Write it manually or ask Joule to draft it, then review the required inputs, data source, validation, output structure, sorting, and failure behavior.
 4. Follow [Importing a skill](../../README.md#importing-a-skill). Enable your custom skill and confirm it and **every required dependency** under **Active Skills**. Start a new conversation and explicitly select **Agentic Thinking**.
 5. Run the sample prompt for your chosen path. Download and open the file, then check the option's written output contract and checklist. Screenshots are optional examples, not proof that your run succeeded.
 6. If a check fails, improve the source and follow [Replacing an imported skill](../../README.md#replacing-an-imported-skill). Recheck **Active Skills**, start a new **Agentic Thinking** conversation, and rerun the unchanged prompt and attachment.
 
-A custom skill cannot connect directly to an SAP backend. Live retrieval uses the named SAP-published skill and your authorized access; the synthetic path makes no backend call. If live access or retrieval is unavailable, ask the facilitator for a supported option or use **Option A's synthetic CSV**. Do not retry failed backend calls or switch services. If `xlsx` is unavailable, escalate to the facilitator; inspecting sample data or describing a workbook does **not** complete Option A.
+A custom skill cannot connect directly to an SAP backend. Live retrieval uses the named SAP-published skill and your authorized access; the synthetic path makes no backend call. If live access or retrieval is unavailable, ask the facilitator for a supported option or use **Option A's synthetic CSV**. Do not retry failed backend calls or switch services. If `Excel` is unavailable, escalate to the facilitator; inspecting sample data or describing a workbook does **not** complete Option A.
 
 <details>
 <summary>Optional: catalog screenshot</summary>
 
-This capture shows **Published by SAP**, not **Active Skills**. It shows `s4hana-public-cloud`, `successfactors-hr`, and `docx` enabled; `xlsx` is not visible. Enable the output skill your option needs and use **Active Skills** for the final readiness check, including your imported custom skill.
+This capture shows **Published by SAP**, not **Active Skills**. It shows `SAP S/4HANA Cloud Public Edition`, `SAP SuccessFactors HCM`, and `Word Documents` enabled; `Excel` is not visible. Enable the output skill your option needs and use **Active Skills** for the final readiness check, including your imported custom skill.
 
-![Published by SAP catalog showing enabled business skills and docx; xlsx is not visible](images/04-01-active-skills.png)
+![Published by SAP catalog showing enabled business skills and Word Documents; Excel is not visible](images/04-01-active-skills.png)
 
 </details>
 
@@ -42,7 +42,7 @@ This capture shows **Published by SAP**, not **Active Skills**. It shows `s4hana
 
 Ask for one specific purchasing organization, supplier or `all suppliers`, an inclusive purchase-order creation date range, currency, and report date. Use `YYYY-MM-DD` dates and ask for missing or invalid inputs.
 
-For the live path, make **exactly one** `s4hana-public-cloud` detail request, filtered and sorted before retrieval, capped at 20 purchase orders. No separate count, pagination, retry, or alternate service. On an error, partial/truncated result, unsupported filter, or missing required field, explain the first problem and stop without a workbook. Do not silently switch to synthetic data.
+For the live path, make **exactly one** `SAP S/4HANA Cloud Public Edition` detail request, filtered and sorted before retrieval, capped at 20 purchase orders. No separate count, pagination, retry, or alternate service. On an error, partial/truncated result, unsupported filter, or missing required field, explain the first problem and stop without a workbook. Do not silently switch to synthetic data.
 
 Create `purchase-order-report.xlsx` with exactly these worksheets:
 
@@ -61,7 +61,7 @@ Use facilitator-confirmed values if these are unsupported, then keep the request
 
 ### Synthetic fallback
 
-Attach [purchase-orders.csv](sample-data/purchase-orders.csv) in a new conversation and use the prompt below. This is **invented workshop data**, not retrieved SAP data. Teach your skill to use the explicitly requested attached CSV instead of a business skill, apply the same filters, sort **all matching rows before taking at most 20**, and produce the same workbook contract with the synthetic source label in `Summary`. Only your custom skill and `xlsx` are required under **Active Skills**.
+Attach [purchase-orders.csv](sample-data/purchase-orders.csv) in a new conversation and use the prompt below. This is **invented workshop data**, not retrieved SAP data. Teach your skill to use the explicitly requested attached CSV instead of a business skill, apply the same filters, sort **all matching rows before taking at most 20**, and produce the same workbook contract with the synthetic source label in `Summary`. Only your custom skill and `Excel` are required under **Active Skills**.
 
 ```text
 Use only the attached synthetic workshop CSV purchase-orders.csv; do not call SAP. Create a purchase-order Excel report for purchasing organization DEMO, all suppliers, creation dates 2026-01-01 through 2026-10-20, currency EUR, with report date 2026-10-20. Label the Summary source as Synthetic workshop CSV: purchase-orders.csv, state that no live retrieval occurred, and make no live completeness claims.
@@ -105,7 +105,7 @@ The updated workbook below shows PO `4500078413` with Creation Date **`2026-03-1
 
 ### Option B contract
 
-Ask for a **country** and **report date** (`YYYY-MM-DD`). Retrieve authorized benefit-plan configuration with `successfactors-hr` and use `docx` to create `benefit-plans-<country-slug>.docx`, for example `benefit-plans-germany.docx`.
+Ask for a **country** and **report date** (`YYYY-MM-DD`). Retrieve authorized benefit-plan configuration with `SAP SuccessFactors HCM` and use `Word Documents` to create `benefit-plans-<country-slug>.docx`, for example `benefit-plans-germany.docx`.
 
 - Ask for missing or invalid inputs. Include only plans matching the requested country; if country metadata is unavailable, use an exact country-name match in the plan name, not a partial, alias, or inferred regional match.
 - Make exactly one retrieval call. If it fails, is incomplete, or returns no matching plans, explain the result and stop **without creating a document**. Do not retry or switch services.

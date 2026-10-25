@@ -14,7 +14,7 @@ Choose a concrete business purpose and decide what the skill should return. Your
 
 Unlike Exercise 4, this exercise does not prescribe the business scenario, input fields, transformation rules, or output format. You define the success criteria before you build the skill. Use supplied or authorized data and the capabilities available in the workshop environment.
 
-If your outcome creates a Microsoft Office file, enable the corresponding SAP-published output skill in **Explore Skills** before testing: `docx` for Word, `pptx` for PowerPoint, or `xlsx` for Excel. Confirm that it appears under **Active Skills** together with any business skill your scenario needs.
+If your outcome creates a Microsoft Office file, enable the corresponding SAP-published output skill in **Explore Skills** before testing: `Word Documents`, `PowerPoint`, or `Excel`. Confirm that it appears under **Active Skills** together with any business skill your scenario needs.
 
 ## Participant steps
 
@@ -56,7 +56,7 @@ The skill achieves the outcome and success criteria you defined, uses only suppl
 | The skill is not selected | Narrow the description and confirm that the skill is enabled in agentic thinking mode. |
 | Joule asks for information repeatedly | Make the required inputs and accepted formats explicit. |
 | A requested artifact cannot be created | Use a supported format or clearly state the environment limitation. |
-| A Word, PowerPoint, or Excel file is not created | Confirm that `docx`, `pptx`, or `xlsx` is enabled under **Explore Skills** and appears under **Active Skills**. |
+| A Word, PowerPoint, or Excel file is not created | Confirm that `Word Documents`, `PowerPoint`, or `Excel` is enabled under **Explore Skills** and appears under **Active Skills**. |
 | A file downloads but does not open | Check the file extension, generation instructions, and supporting script output. |
 | The output structure changes between runs | Define the response, section, slide, sheet, or column order explicitly. |
 

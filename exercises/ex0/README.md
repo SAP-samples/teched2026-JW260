@@ -78,7 +78,7 @@ The workshop exercises focus on custom skills you build yourself. Before you sta
 
 1. Open **User menu > Explore Skills**.
 2. On the **Published by SAP** tab, find the SAP-published skills. They appear alongside any custom skills you have imported. SAP-published skills are marked with SAP as the publisher.
-3. Enable `s4hana-public-cloud` and `successfactors-hr` using the toggle on each card.
+3. Enable `SAP S/4HANA Cloud Public Edition` and `SAP SuccessFactors HCM` using the toggle on each card.
 4. Confirm that both appear under **Active Skills**.
 5. Open a new conversation and enable agentic thinking mode.
 
@@ -87,7 +87,7 @@ The workshop exercises focus on custom skills you build yourself. Before you sta
 Try these prompts one at a time:
 
 - `Show me my last 5 purchase orders.`
-- `Are there any open purchase orders over $50,000?`
+- `Drill into the first PO from the list above and show me its line items.`
 - `Show me all open vendor invoices from last month.`
 
 Joule pulls data from S/4HANA without you naming a transaction code or Fiori app.
@@ -101,8 +101,6 @@ Try these prompts one at a time:
 - `How many employees do we have in the Manufacturing division?`
 
 Joule identifies your user account automatically and returns live data from SuccessFactors.
-
-
 
 ---
 

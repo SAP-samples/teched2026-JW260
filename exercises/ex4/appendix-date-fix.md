@@ -26,7 +26,7 @@ Joule returned an updated skill package for download.
 
 ## 4. Reimport and verify
 
-Download and extract the package and review the changes. Disable and remove the old imported custom skill, then follow [Importing a skill](../../README.md#importing-a-skill) to import and enable the replacement. Confirm the replacement, `s4hana-public-cloud`, and `xlsx` under **Active Skills** for a live retest. For a synthetic retest, only the replacement and `xlsx` are required; attach the same CSV and make no backend call.
+Download and extract the package and review the changes. Disable and remove the old imported custom skill, then follow [Importing a skill](../../README.md#importing-a-skill) to import and enable the replacement. Confirm the replacement, `SAP S/4HANA Cloud Public Edition`, and `Excel` under **Active Skills** for a live retest. For a synthetic retest, only the replacement and `Excel` are required; attach the same CSV and make no backend call.
 
 Start a new **Agentic Thinking** conversation, run the unchanged sample prompt, open the new workbook, and validate dates against the source and filters, sorting, and the rest of the [Option A checklist](README.md#option-a-checklist). Do not describe the defect as fixed until this output has been checked.
 
