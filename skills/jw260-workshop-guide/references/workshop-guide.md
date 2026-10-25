@@ -13,6 +13,8 @@ JW260 is a hands-on SAP TechEd 2026 session about building custom skills for Jou
 
 Complete the exercises in order. Later exercises build on the metadata, validation, supporting-file, and safety concepts introduced earlier.
 
+You can write `SKILL.md` manually or ask Joule to draft it from your requirements. Review the generated skill before importing and testing it.
+
 ## Exercise 0 - Log In, Set Up, and Get Ready
 
 Location: `exercises/ex0/`
@@ -65,7 +67,9 @@ Skills:
 - `broad-greeter` - deliberately flawed teaching artifact.
 - `workshop-greeter` - recommended reference artifact.
 
-Goal: observe how a broad description and vague instructions affect routing and output reliability, diagnose the defects, improve `broad-greeter`, and retest unchanged prompts.
+Goal: compare the behavior of `broad-greeter` and `workshop-greeter`, improve `broad-greeter`, and retest unchanged prompts.
+
+A skill's `description` helps Joule decide when to use it; its instructions define what Joule should do. Better means a clearer purpose and more predictable response structure, not simply a friendlier greeting.
 
 Exact prompts:
 
@@ -73,16 +77,19 @@ Exact prompts:
 2. `Hello, I am NAME. Tell me what I will learn in the Joule Work skills workshop.`
 3. `Help me get started with the Joule Work skills workshop.`
 
-The recommended skill should welcome the participant, list exactly three learning levels, use the prescribed closing sentence, and remain under 120 words. Compare only observable response qualities when provenance is unavailable. Do not use unrelated prompts whose answer may come from standard agentic reasoning and cannot be attributed to either skill.
+Replace `NAME` with the participant's name and use the same name in both skill runs. The third prompt omits the name; if Joule asks for it, provide it and compare the completed response. Asking for missing information is not a failure.
+
+Compare name handling, exactly three learning bullets (skill metadata and routing, validated business calculations, SAP data analysis with a bundled Python script), the closing sentence `Start with the smallest reliable skill, then add complexity one controlled step at a time.`, and a response under 120 words. Compare only observable response qualities when provenance is unavailable. Do not use unrelated prompts whose answer may come from standard agentic reasoning and cannot be attributed to either skill.
 
 Exercise flow:
 
-1. Import and enable both skills.
-2. Run each prompt twice and record visible behavior and provenance when available.
-3. Compare both `SKILL.md` files.
-4. Improve `broad-greeter` by narrowing its description, adding a negative boundary, and defining a reliable output contract.
-5. Re-import the updated `broad-greeter` folder.
-6. Isolate the recommended and improved skills in turn and retest unchanged prompts.
+1. Import both skills, but enable only `broad-greeter`. Keep `workshop-greeter`, `jw260-workshop-guide`, and other custom workshop skills disabled. Start a new conversation in agentic thinking mode.
+2. Run the three exact prompts and record the responses. Then disable `broad-greeter`, enable only `workshop-greeter`, start a new conversation, and run the same prompts unchanged. Compare the responses and record provenance when visible. Optionally repeat one prompt with each skill to check consistency.
+3. Open both `SKILL.md` files and use `workshop-greeter` as a reference. Narrow `broad-greeter`'s description to workshop greetings and add two clear response rules, such as exactly three learning bullets and the prescribed closing sentence. Keep its folder name and metadata name unchanged. Participants may edit manually or ask Joule to help draft the changes, then review them.
+4. Re-import the updated `broad-greeter` folder.
+5. Disable `workshop-greeter`, enable only the improved `broad-greeter`, start a new conversation, and retest the same three prompts. Compare with both earlier sets of responses.
+
+The subsequent comparison with `jw260-workshop-guide/SKILL.md` is optional enrichment, not a requirement for completing Exercise 1.
 
 Routing is probabilistic. If provenance is unavailable, record `Not visible` and compare observable response qualities without claiming which skill ran.
 

@@ -2,20 +2,16 @@
 
 ## Goal
 
-Observe how skill descriptions and instructions affect routing and response reliability, then improve a flawed skill using evidence from Joule Work.
+Compare a vague skill with a more clearly defined skill, then improve the vague skill and test it again.
 
-> [!warning] Teaching anti-pattern
+A skill's `description` helps Joule decide when to use it. Its instructions define what Joule should do. Here, **better** means a clearer purpose and a response that consistently follows the intended structure, not simply a friendlier answer.
+
+> [!WARNING]
+> **Teaching anti-pattern**
 > `broad-greeter` is an intentionally poor example created for this exercise. Do not copy it into production skills.
 
 <!-- TEACHING ANTI-PATTERN: broad-greeter intentionally creates routing overlap. -->
 <!-- TEACHING ANTI-PATTERN: broad-greeter intentionally leaves output behavior underspecified and inconsistent. -->
-
-## Timebox: 18 minutes
-
-- Observe: 6 minutes
-- Diagnose: 4 minutes
-- Improve: 4 minutes
-- Retest: 4 minutes
 
 ## Before You Start
 
@@ -24,72 +20,75 @@ Import each top-level skill folder unzipped:
 - `broad-greeter`
 - `workshop-greeter`
 
-Each folder must contain its named `SKILL.md`. In Joule Work, use **Explore Skills > Import** to import both folders. Before testing, disable `jw260-workshop-guide` and any other custom workshop skills so they do not compete with the two skills used in this exercise. Enable only `broad-greeter` and `workshop-greeter` on **My Skills**, then start a new conversation and select agentic thinking mode.
+Each folder must contain its named `SKILL.md`. In Joule Work, use **Explore Skills > Import** to import both folders. Before testing, disable `jw260-workshop-guide` and any other custom workshop skills. Enable only `broad-greeter` on **My Skills** and leave `workshop-greeter` disabled. Start a new conversation and select agentic thinking mode.
 
-> [!important]
+> [!IMPORTANT]
 > Keep `jw260-workshop-guide` disabled throughout Exercise 1. Re-enable it after completing the exercise when you need workshop navigation or troubleshooting help.
 
 After import, both custom skills appear on **My Skills**:
 
 ![My Skills showing the imported broad-greeter and workshop-greeter cards](images/01-01-imported-skills.png)
 
-Enable both skills before the first comparison run. A blue toggle indicates an enabled skill.
+Test one skill at a time: **broad-greeter first, then workshop-greeter**. A blue toggle indicates an enabled skill. Start a new conversation whenever you switch skills so the earlier responses do not influence the comparison.
 
-![My Skills with broad-greeter and workshop-greeter enabled](images/01-02-greeters-enabled.png)
+## Observe
 
-## Observe - 6 Minutes
-
-Run each exact prompt twice with both skills enabled:
+With only `broad-greeter` enabled, run these exact prompts. Replace `NAME` with your name and use the same name in both skill runs.
 
 1. `Welcome me to the Joule Work skills workshop. My name is NAME.`
 2. `Hello, I am NAME. Tell me what I will learn in the Joule Work skills workshop.`
 3. `Help me get started with the Joule Work skills workshop.`
 
-After every run, note the routed skill if Joule shows it and compare the visible response qualities: correct use of the name, three learning levels, the exact closing sentence, and concise, consistent wording. If your tenant does not expose the selected skill, record `Not visible` and base the comparison on the response only.
+Record the responses. Then disable `broad-greeter`, enable only `workshop-greeter`, start a new conversation in agentic thinking mode, and run the same three prompts unchanged.
+
+The third prompt does not provide a name. If Joule asks for your name, provide it and compare the completed response. Asking for missing information is not a failure.
+
+Use this table to compare both skills:
+
+| Check | What to look for |
+| --- | --- |
+| Name handling | Uses the supplied name and asks when it is missing. |
+| Learning content | Exactly three bullets covering skill metadata and routing, validated business calculations, and SAP data analysis with a bundled Python script. |
+| Ending | Uses the specified closing sentence below. |
+| Length | Stays under 120 words. |
+
+If Joule shows the selected skill, note it; otherwise record `Not visible` and compare the responses only. Optionally repeat one prompt with each skill to check consistency.
 
 The required closing sentence for comparison is: `Start with the smallest reliable skill, then add complexity one controlled step at a time.`
 
-The recommended skill produces the three learning levels and exact closing sentence. Your routed skill may differ while both skills are enabled, which is why repeated runs matter.
+The recommended skill should produce the three learning levels and exact closing sentence. Compare it with the earlier `broad-greeter` responses rather than relying on competition between enabled skills to expose a difference.
 
 ![Workshop greeting response with three learning levels and the required closing sentence](images/01-03-workshop-greeting-result.png)
 
 > [!NOTE]
 > **Selection is not deterministic**
-> Skill selection can vary between runs, tenants, and surrounding conversation. A flawed skill is not guaranteed to fail on every prompt. Your evidence is the behavior observed across repeated prompts, not a promised routing result or guaranteed failure.
+> Enabling one custom skill at a time makes the comparison clearer, but does not guarantee that Joule selects it. A flawed skill may still produce a reasonable answer. Compare observed behavior without assuming a guaranteed failure or claiming selection when it is not visible.
 
-## Diagnose - 4 Minutes
+## Improve
 
-Open both `SKILL.md` files and compare them with your observations.
+Open both `SKILL.md` files. Use `workshop-greeter` as a reference to improve `broad-greeter`:
 
-- Identify description words that overlap with unrelated requests or with another skill.
-- Identify instructions that leave the number, content, order, length, or closing of the response undefined.
-- For each observed difference, cite one metadata or instruction line that could explain it.
-- Decide whether your strongest evidence concerns routing, output reliability, or both.
+1. Narrow its `description` to workshop greetings.
+2. Add two clear response rules, for example, exactly three learning bullets and the required closing sentence.
 
-## Improve - 4 Minutes
+Keep the folder name and metadata `name` unchanged. You can edit the file manually or ask Joule to help draft the changes, then review them.
 
-Improve `broad-greeter`.
+Re-import the updated `broad-greeter` folder. Disable `workshop-greeter` before enabling the improved skill.
 
-Narrow its `description` and instructions to one distinct greeting use case that does not overlap with `workshop-greeter`. Add one explicit negative boundary. Define a reliable output contract covering name behavior, the exact number and content of learning items, maximum length, and closing sentence. Keep the folder name and metadata name unchanged.
+## Retest
 
-Re-import the updated `broad-greeter` folder, then enable it.
+1. Confirm that only your improved `broad-greeter` is enabled among the custom workshop skills.
+2. Start a new conversation in agentic thinking mode and run the same three prompts.
+3. Compare the results with the original `broad-greeter` responses and the `workshop-greeter` reference responses.
+4. State one evidence-based improvement and one remaining uncertainty.
 
-## Retest - 4 Minutes
-
-1. Disable `broad-greeter` so only `workshop-greeter` remains enabled.
-2. Run each of the three exact prompts once.
-3. Compare these results with the earlier runs. Note what changed in routing and response qualities.
-4. Disable `workshop-greeter` and enable only your improved `broad-greeter` skill.
-5. Run the prompt most relevant to your change twice.
-6. State one evidence-based improvement and one remaining uncertainty.
-
-## Compare with the JW260 Workshop Guide
+## Optional: Compare with the JW260 Workshop Guide
 
 After completing the `broad-greeter` retest:
 
 1. Re-enable `jw260-workshop-guide` if you want to use it for the remaining workshop exercises.
 2. Open [`skills/jw260-workshop-guide/SKILL.md`](../../skills/jw260-workshop-guide/SKILL.md) in the repository.
-3. Compare it with the original `broad-greeter/SKILL.md`.
+3. Compare it with your `broad-greeter/SKILL.md`.
 4. Identify how the workshop guide improves reliability through:
    - a narrower and more specific description;
    - explicit use and non-use boundaries;
@@ -102,10 +101,10 @@ The workshop guide is a more complete example, but additional detail is useful o
 
 ## Success Criteria
 
-You have observed repeated behavior with competing skills, linked evidence to metadata or instructions, isolated the good skill for comparison, improved the flawed skill, retested the change without treating routing as deterministic, and compared it with the more detailed JW260 workshop guide.
+You have tested `broad-greeter` first and `workshop-greeter` second in separate conversations, compared their responses, improved the vague skill, and retested the same prompts.
 
 ## Summary
 
-You compared intentionally flawed and recommended skill designs, connected observed behavior to metadata and instructions, improved one skill, retested it with the same prompts, and examined how clear boundaries and detailed instructions make the JW260 workshop guide more reliable.
+You compared vague and clearly defined skill behavior, added clearer instructions, and retested the same prompts to see what improved.
 
 Continue to - [Exercise 2 - Gross Margin Calculator](../ex2/README.md)

@@ -8,6 +8,8 @@ This repository contains the material for the SAP TechEd 2026 session JW260 - Bu
 
 In this hands-on session, you build progressively more capable Joule Work custom skills. You start by comparing skill descriptions and instructions, add validated deterministic calculation, prioritize synthetic sales-order exceptions, and then design your own business and document-generation skills.
 
+You can write `SKILL.md` manually or ask Joule to draft it from your requirements. Review the generated skill before importing and testing it.
+
 After completing the exercises, you will be able to:
 
 - Explain how skill metadata and instructions affect discovery and behavior.

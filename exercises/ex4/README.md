@@ -107,20 +107,22 @@ Open `purchase-order-report.xlsx` and confirm:
 
 ### Target outcome
 
-Create a custom skill that asks for a country and report date, retrieves the signed-in participant's authorized benefit-plan data with `successfactors-hr`, and creates `benefit-plans-<country-slug>.docx` with the `docx` skill. For example, the country `Germany` produces `benefit-plans-germany.docx`.
+Create a custom skill that asks for a **country** and **report date** (`YYYY-MM-DD`), retrieves authorized benefit plans with `successfactors-hr`, and uses `docx` to create `benefit-plans-<country-slug>.docx` — for example, `benefit-plans-germany.docx`.
 
-Validate that country is a non-empty country name and that report date uses `YYYY-MM-DD`. Make exactly one call to `successfactors-hr`. Retrieve only benefit plans whose configured country or region matches the requested country. If that metadata is unavailable, an exact country-name match in the returned plan name is an acceptable fallback. Do not use partial-name, alias, or inferred regional matches. Retrieve the returned plan name, benefit ID, type, active status, effective date, entitlement amount and currency, payment frequency, payroll integration, enrollment method and requirement, eligibility rule, and any returned opt-out, carry-forward, notification, claims-limit, dependent, or nominee information. Do not retrieve personal enrollments, employee compensation, another employee's data, or benefit plans outside the requested country.
+Keep the skill focused:
 
-On any error, including authorization, connection, timeout, partial result, or truncated result, do not retry, switch services, or probe alternatives. Report the first error and stop. If the response contains no matching plans, create no document; state that no matching benefit plans were returned.
+- Ask for missing inputs. Include only plans matching the requested country; if country metadata is unavailable, use an exact country-name match in the plan name.
+- Retrieve once. If retrieval fails, is incomplete, or returns no matching plans, explain the result and stop without creating a document.
+- Use returned plan information only. Do not include personal enrollment or compensation data, or change SuccessFactors data.
 
-The document must contain these sections in this order:
+Include these four sections in order:
 
-1. `Benefit Plans - <Country>`
-2. `Report Scope` - requested country and report date.
-3. `Plan Summary` - a table with `Plan Name`, `Benefit ID`, `Type`, `Amount`, `Currency`, `Frequency`, `Enrollment`, and `Status`, sorted alphabetically by `Plan Name`. Use `Not available` only when a field was not returned.
-4. `Plan Details` - one subsection per plan, in the same alphabetical order as the summary. Each subsection must preserve returned values and include only available fields from: plan name, benefit ID, type, status, effective date, entitlement amount and currency, frequency, payroll integration, enrollment requirement and method, enrollment window, opt-out, carry-forward enrollment, notification, eligibility rule, claims limit, dependent-specific rules, nominee requirement, and benefit schedule.
+1. **Title:** `Benefit Plans - <Country>`.
+2. **Report Scope:** country and report date.
+3. **Plan Summary:** a table with `Plan Name`, `Benefit ID`, `Type`, `Amount`, `Currency`, `Frequency`, `Enrollment`, and `Status`, sorted alphabetically by plan name. Use `Not available` for missing values.
+4. **Plan Details:** one subsection per plan in the same order, using available configuration details such as effective date, enrollment settings, or eligibility rules.
 
-The document contains only the report title, scope, summary, and plan-detail content. Do not add `Data Notes`, source descriptions, matching-method explanations, read-only statements, eligibility or enrollment disclaimers, payment-entitlement statements, legal or tax disclaimers, or any other process or skill-execution information.
+Keep the document limited to these sections, without extra process commentary.
 
 ### Sample prompt
 
@@ -148,16 +150,13 @@ The captured run contains six plans. Your authorized data may differ; verify the
 
 ### Verify the output
 
-Open `benefit-plans-<country-slug>.docx` and confirm:
+Open the generated Word file and confirm:
 
-- all four sections exist in the required order;
-- the report scope shows the requested country and report date;
-- every summary row matches the selected country through returned country/region metadata or the exact country-name fallback in the returned plan name;
-- the summary uses the required columns and alphabetical plan-name order;
-- every plan has one detail subsection in the same order as the summary;
-- details preserve the returned values and do not invent unavailable fields;
-- the document has no `Data Notes`, source or matching-method explanation, read-only statement, eligibility/enrollment/payment disclaimer, or legal/tax disclaimer;
-- no personal enrollment, compensation, unsupported employee information, or plans outside the requested country appear;
+- the filename, country, and report date match your request;
+- the four sections appear in order, without extra process commentary;
+- the summary has the specified columns and alphabetical plan order;
+- each plan has a matching detail subsection using returned information only;
+- all plans match the requested country, and no personal enrollment or compensation data appears.
 
 <!-- SAP Ariba Buying option temporarily disabled because the live composed use case could not be qualified reliably.
 

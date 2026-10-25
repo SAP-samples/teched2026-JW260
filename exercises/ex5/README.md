@@ -4,6 +4,8 @@
 
 Design, build, and test an original custom Joule skill for a use case and outcome of your choice.
 
+You can write `SKILL.md` manually or ask Joule to draft it from your requirements. Review the generated skill before importing and testing it.
+
 ## Choose your outcome
 
 Choose a concrete business purpose and decide what the skill should return. Your result may be a conversational response, analysis, workflow, PowerPoint, Word document, Excel workbook, or another artifact supported by the workshop environment.

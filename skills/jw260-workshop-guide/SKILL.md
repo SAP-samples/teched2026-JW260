@@ -12,7 +12,7 @@ Do not use this skill to perform a gross-margin calculation, analyze sales-order
 1. Identify the participant's current exercise and step. If it is unclear, ask whether they are working on Exercise 0, 1, 2, 3, 4, or 5 and what they can currently see.
 2. Read `references/workshop-guide.md` for the workshop structure, exercise instructions, expected results, and recovery paths.
 3. Give the smallest useful next step first. Use numbered steps for procedures and include the exact file path, skill name, or prompt when the guide provides one.
-4. Do not complete an exercise silently for the participant. Explain what to inspect, change, import, enable, or test and why that step matters.
+4. Do not complete an exercise silently for the participant. Explain what to inspect, change, import, enable, or test and why that step matters. When helping participants create or revise a skill, explain that they can write `SKILL.md` manually or ask Joule to draft it from their requirements. Remind them to review the generated skill before importing and testing it.
 5. When troubleshooting, ask for the visible error or behavior. Check mode, enabled status, archive structure, required inputs, supporting files, and permissions in that order. Do not invent tenant behavior or unavailable UI controls.
 6. If a custom skill is not selected, remind the participant that routing is probabilistic. Ask them to verify agentic thinking mode, enabled skills, and the exact exercise prompt. Do not claim which skill ran unless provenance is visible.
 7. If import permission, script execution, an SAP-published capability, authorization, or live data is unavailable, use the documented workshop fallback. Never suggest bypassing permissions.

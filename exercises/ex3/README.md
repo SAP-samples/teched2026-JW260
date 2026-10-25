@@ -10,7 +10,7 @@ Before the workshop, confirm the exact SAP-published skill name and supported fi
 
 Prompt:
 
-`Use Sales Order Exception Prioritizer to rank my authorized sales-order exceptions as of 2026-10-07. Follow its bounded live-retrieval procedure and do not change any business data.`
+`Use Sales Order Exception Prioritizer to rank my authorized sales-order exceptions as of 2026-10-07. Follow its bounded live-retrieval procedure .`
 
 The skill first counts authorized, incomplete orders with requested delivery dates from 2026-09-07 through 2026-10-14. It then retrieves at most 50 matching orders, sorted by requested delivery date descending before the limit is applied. If more than 50 match, Joule should state that briefly and continue without asking for confirmation. It should show the 10 highest-ranked results and clearly state that the analysis is a bounded sample.
 
@@ -18,18 +18,47 @@ If the SAP capability cannot count, filter, sort, and limit on the server before
 
 For live data, `TotalCreditCheckStatus` is a tenant code-list value, not a Boolean. The skill must retrieve the code-list text for the exact value before mapping it to `credit_block`. It must not guess from a raw code such as `D`, borrow a mapping from another SAP field, or treat every nonempty value as blocked. Unresolved or conflicting values remain `unknown` and receive no credit-block points; the result reports them separately.
 
+### Example live result
+
+Compare your response with the captured workshop run below. Live records and counts may differ. These screenshots illustrate the live path, not the expected results for the fixture fallback.
+
+Joule states the matching count and the bounded analysis scope before presenting the results:
+
+![Live prioritization response showing 144 matching orders and a bounded analysis of 50](images/03-02-live-scope-and-results.png)
+
+The ranked table highlights the highest-priority orders:
+
+![Live ranked table showing the first Critical and High priority sales-order exceptions](images/03-03-live-ranked-orders.png)
+
+The summary shows priority totals, unknown credit statuses, and the credit-code meanings retrieved for this tenant. Do not copy these mappings into your skill as universal SAP rules.
+
+![Live analysis summary showing priority totals, verified credit-status mappings, and the ranked CSV download](images/03-04-live-summary-and-credit-status.png)
+
+When a ranked CSV is available, download and open it to inspect the full analyzed sample, scores, and reasons:
+
+![Opened ranked CSV showing sales-order scores, priorities, credit-status resolution, and reasons](images/03-05-ranked-csv-preview.png)
+
 ## Fixture fallback path
 
 1. Attach `sample-data/open-sales-orders.csv`.
 
    ![The synthetic open-sales-orders CSV attached to the Joule conversation](images/03-01-attach-fixture.png)
 
-2. Run: `Analyze the attached open-sales-orders.csv as of 2026-10-07 using Sales Order Exception Prioritizer. Do not change any business data.`
-3. Confirm that the ranked table is sorted by score descending, requested date ascending, and sales order ascending.
-4. Confirm these totals: Critical 5, High 6, Medium 5, Low 4, total 20.
-5. Confirm that the response states `No SAP business data was changed.`
+2. Run: `Use Sales Order Exception Prioritizer to rank sales-order exceptions as of 2026-10-07. Use the attached csv file instead of going through backend connectivity.`
 
-## Expected leading results
+   ![CSV fallback request using the attached open-sales-orders.csv instead of backend connectivity](images/03-06-fixture-request.png)
+
+3. Confirm that the ranked table is sorted by score descending, requested date ascending, and sales order ascending.
+
+   ![CSV fallback ranked results showing DEMO-1019 and DEMO-1009 as Critical with scores of 130](images/03-07-fixture-ranked-results.png)
+
+4. Confirm these totals: Critical 5, High 6, Medium 5, Low 4, total 20.
+
+   ![CSV fallback summary showing 20 analyzed orders, priority totals, zero unknown credit statuses, and the ranked CSV download](images/03-08-fixture-summary-and-download.png)
+
+5. Use the download link, when available, to open the full ranked CSV and compare it with the expected leading results below.
+
+## Expected leading results for the fixture
 
 - `DEMO-1019`: score 130, Critical, credit block, delivery block, overdue date, and high value.
 - `DEMO-1009`: score 130, Critical, credit block, delivery block, overdue date, and high value.
