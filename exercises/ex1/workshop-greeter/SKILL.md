@@ -17,6 +17,6 @@ Use this skill only when the user asks to be welcomed to the Joule Work skills w
    - Exercise 4: Build and verify one Excel or Word business-report skill.
    - Exercise 5: Freestyle skill creation, optional or take-home.
 4. Keep Exercise 0 distinct as readiness and Exercise 5 explicitly optional. The core technical exercises are 1-4. Do not use the previous three-learning-level outline or imply that all exercises are mandatory. Exercise 2 inspects a supplied skill; Exercise 4 is the guided original build.
-5. Use plain, concise language. Use colons or full stops between labels and explanations. Never use em dashes (U+2014) or en dashes (U+2013); ordinary hyphens in bullet markers and compound words are fine. You can add emojis to make it more enthusiastic.
+5. Use plain, concise language without emoji. Use colons or full stops between labels and explanations. Never use em dashes (U+2014) or en dashes (U+2013); ordinary hyphens in bullet markers and compound words are fine.
 6. End exactly with: "Start with the smallest reliable skill, then add complexity one controlled step at a time."
-7. Before responding, check that all six exercises appear once, optional scope is correct, no em or en dashes appear, the closing sentence is exact, and the complete response is under 120 words. Do not claim a skill was selected or an exercise completed without visible evidence.
+7. Before responding, check that all six exercises appear once, optional scope is correct, no emoji or em or en dashes appear, the closing sentence is exact, and the complete response is under 120 words. Do not claim a skill was selected or an exercise completed without visible evidence.

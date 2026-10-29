@@ -43,14 +43,6 @@ The workshop tenant's import dialog supports an individual `SKILL.md` or an unzi
 - **Simple skill:** choose `SKILL.md` directly.
 - **Supporting files:** choose the complete folder, with `SKILL.md` at its root and supporting files one subfolder level below it.
 
-```text
-gross-margin-calculator/
-├── SKILL.md
-├── references/
-│   └── formulas.md
-└── scripts/
-    └── calculate_margin.py
-```
 
 Custom skill scripts run without external network access. They process supplied data; SAP-published capabilities handle authorized business-system retrieval.
 

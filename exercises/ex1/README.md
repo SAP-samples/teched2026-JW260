@@ -23,12 +23,25 @@ Open `workshop-greeter/SKILL.md` before importing. Identify its three parts:
 | `name` and `description` | Identify the skill and describe when it should be selected. |
 | `## Instructions` | Define the steps, required inputs, and response structure. |
 
-Now import each simple skill by selecting its `SKILL.md` file (or its complete unzipped folder):
+Import the two skills **separately**, using **Explore Skills > Import** once for each skill:
 
-- `broad-greeter`
-- `workshop-greeter`
+| Import | Select this file | Or select this complete unzipped folder |
+| --- | --- | --- |
+| First: `broad-greeter` | `exercises/ex1/broad-greeter/SKILL.md` | `exercises/ex1/broad-greeter/` |
+| Second: `workshop-greeter` | `exercises/ex1/workshop-greeter/SKILL.md` | `exercises/ex1/workshop-greeter/` |
 
-Each folder contains a file named exactly `SKILL.md`. In Joule Work, use **Explore Skills > Import** to import both skills. Before testing, disable `jw260-workshop-guide` and any other custom workshop skills. Enable only `broad-greeter` on **My Skills** and leave `workshop-greeter` disabled. Start a new conversation and select agentic thinking mode.
+> [!IMPORTANT]
+> **Do not select `ex1/` or `exercises/`.** These are parent folders containing multiple skills, not individual skill folders. For folder import, select the folder that directly contains one `SKILL.md`: `broad-greeter/` or `workshop-greeter/`. Do not try to import both skills by uploading their shared parent folder.
+
+```text
+exercises/ex1/                  <- Do not select this parent folder
+├── broad-greeter/              <- Select for the first import
+│   └── SKILL.md
+└── workshop-greeter/           <- Select for the second import
+    └── SKILL.md
+```
+
+Before testing, disable `jw260-workshop-guide` and any other custom workshop skills. Enable only `broad-greeter` on **My Skills** and leave `workshop-greeter` disabled. Start a new conversation and select agentic thinking mode.
 
 > [!IMPORTANT]
 > Keep `jw260-workshop-guide` disabled throughout Exercise 1. Re-enable it after completing the exercise when you need workshop navigation or troubleshooting help.

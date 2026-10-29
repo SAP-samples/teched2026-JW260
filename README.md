@@ -73,11 +73,17 @@ These instructions match the file/folder import dialog captured in the workshop 
 5. Confirm the custom skill and any required business/output skills under **Active Skills**.
 6. Start a new conversation, select **Agentic Thinking**, and follow the exercise README.
 
+> [!IMPORTANT]
+> **Select one skill, not its parent exercise folder.** For folder import, select the folder that directly contains `SKILL.md`, including its supporting files. Do not select `exercises/`, `ex1/`, `ex2/`, the repository root, or only `scripts/` or `references/`. Import each skill separately. In Exercise 1, select `broad-greeter/` for one import and `workshop-greeter/` for the other, or select each skill's `SKILL.md` directly.
+
 Example:
 
 ```text
-workshop-greeter/
-└── SKILL.md
+exercises/ex1/                  <- Do not select this parent folder
+├── broad-greeter/              <- Select this folder for the first import
+│   └── SKILL.md
+└── workshop-greeter/           <- Select this folder for the second import
+    └── SKILL.md
 ```
 
 ## Replacing an imported skill
@@ -93,7 +99,7 @@ Editing a local file does not update the imported copy.
 
 | Problem | Recovery |
 | --- | --- |
-| Import fails | Check the root `SKILL.md`, file/folder choice, supporting-file depth, and absence of caches or `.DS_Store`. |
+| Import fails | Select one skill folder that directly contains `SKILL.md`, not its parent exercise folder. Import each skill separately; check supporting-file depth and absence of caches or `.DS_Store`. |
 | Skill is not selected | Check mode and enabled status. Start a fresh conversation and retry the exercise prompt; do not assume which skill ran if provenance is hidden. |
 | Script cannot run | Exercise 2 has a disclosed formula fallback. In Exercise 3, stop and inspect the rules and expected fixture results with the facilitator; do not call this an executed analysis. |
 | Live SAP retrieval is unavailable | Exercise 3: use its sales-order CSV. Exercise 4: choose another supported option or its synthetic purchase-order path. Never substitute one exercise's dataset for another. |
