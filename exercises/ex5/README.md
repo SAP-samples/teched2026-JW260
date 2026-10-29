@@ -2,6 +2,9 @@
 
 This is an optional extension after the core exercises. Use spare workshop time or return to it later; it is not required to complete the workshop.
 
+> [!TIP]
+> **Time left? Explore Joule Work Desktop.** Ask a facilitator to help you get it configured before you start. This is an optional exploration, not a requirement for completing the workshop.
+
 ## Goal
 
 Design, build, and test an original custom Joule skill for a use case and outcome of your choice.
@@ -57,7 +60,6 @@ The skill achieves the outcome and success criteria you defined, uses only suppl
 | Joule asks for information repeatedly | Make the required inputs and accepted formats explicit. |
 | A requested artifact cannot be created | Use a supported format or clearly state the environment limitation. |
 | A Word, PowerPoint, or Excel file is not created | Confirm that `Word Documents`, `PowerPoint`, or `Excel` is enabled under **Explore Skills** and appears under **Active Skills**. |
-| A file downloads but does not open | Check the file extension, generation instructions, and supporting script output. |
 | The output structure changes between runs | Define the response, section, slide, sheet, or column order explicitly. |
 
 ## Summary

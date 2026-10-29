@@ -75,6 +75,8 @@ To import a custom skill:
 5. Find the skill under **My Skills** and enable it.
 6. Confirm the intended custom, business, and output skills under **Active Skills**. Start a new conversation and select agentic thinking mode before testing.
 
+For folder import, select the skill folder itself: the folder that directly contains `SKILL.md`. Do not select its parent exercise folder, the repository root, or only `scripts/` or `references/`. Import each skill separately. In Exercise 1, import `exercises/ex1/broad-greeter/` and `exercises/ex1/workshop-greeter/` in two separate imports, or select each skill's `SKILL.md` directly. Never select their shared `exercises/ex1/` parent folder. In Exercise 2, select `exercises/ex2/gross-margin-calculator/`, not `exercises/ex2/`.
+
 This file/folder procedure matches the captured workshop tenant dialog. Supporting files must be no more than one subfolder level below the skill root.
 
 To replace an imported skill, keep and review the updated local source, disable and remove the old imported copy, then import the replacement. If removal is unavailable, ask the facilitator rather than creating competing copies. Check the imported details contain the changes, enable the new version, and retest unchanged prompts in fresh conversations.
@@ -111,7 +113,7 @@ Compare name handling, exactly six exercise bullets in order (0 readiness, 1 com
 
 Exercise flow:
 
-1. First inspect `workshop-greeter/SKILL.md`: the `---` delimiters enclose YAML metadata, `name` and `description` identify/select the skill, and `## Instructions` defines its procedure. Import both skills, but enable only `broad-greeter`. Keep `workshop-greeter`, `jw260-workshop-guide`, and other custom workshop skills disabled. Start a new conversation in agentic thinking mode.
+1. First inspect `workshop-greeter/SKILL.md`: the `---` delimiters enclose YAML metadata, `name` and `description` identify/select the skill, and `## Instructions` defines its procedure. Import `broad-greeter` and `workshop-greeter` separately, selecting each `SKILL.md` or its individual skill folder, never the shared `ex1/` parent folder. Enable only `broad-greeter`. Keep `workshop-greeter`, `jw260-workshop-guide`, and other custom workshop skills disabled. Start a new conversation in agentic thinking mode.
 2. Run the three exact prompts, each in its own new Agentic Thinking conversation, and record the responses. Then disable `broad-greeter`, enable only `workshop-greeter`, and run each unchanged prompt in its own new conversation. Compare the responses and record provenance when visible. Optionally repeat one prompt with each skill to check consistency.
 3. Open both `SKILL.md` files and use `workshop-greeter` as a reference. Narrow `broad-greeter`'s description to workshop greetings and add two clear response rules, such as one bullet for each of the six exercises with optional scope and the prescribed closing sentence. Follow the reference's plain style without em dashes. Keep its folder name and metadata name unchanged. Participants may edit manually or ask Joule to help draft the changes, then review them.
 4. Replace the imported `broad-greeter` using the shared replacement procedure above; a local edit alone does not update Joule.
@@ -155,7 +157,7 @@ Run each case in its own new Agentic Thinking conversation; answer any clarifica
 
 If bundled script execution is unavailable, the calculator uses the rules in its bundled `references/formulas.md` and states that the formula fallback was used. The repository path is `exercises/ex2/gross-margin-calculator/references/formulas.md`; that file is not bundled with this guide. Its formulas are gross profit = revenue - cost and gross margin percent = (revenue - cost) / revenue * 100, with two-decimal half-up rounding and undefined margin at zero revenue. Negative revenue/cost are rejected and currencies must match.
 
-The optional target-margin extension adds an input below 100 percent and calculates required revenue = cost / (1 - target margin percent / 100). Label it separately from the base output, replace the edited skill, and retest. This is not a required part of the core calculator exercise.
+The optional target-margin extension has three steps: edit `SKILL.md`, replace and enable the imported complete folder, then run one test in a fresh Agentic Thinking conversation. Add target-margin planning to the description and opening sentence; replace the sentence beginning `The only additional text permitted` with the README's short instruction block. The formula already exists in `references/formulas.md`; no Python or reference edits are needed. Preserve the base result and fallback disclosure; validate a requested numeric target from 0% to below 100%, ask if missing, use the target-revenue formula with two-decimal half-up rounding, and label the extra formula-based result separately from the script result. Test: `Calculate gross margin for revenue 125000 EUR and cost 87500 EUR. Also calculate required revenue for a 35% target gross margin at the same cost.` Expect current margin 30.00% and target required revenue 134615.38 EUR. Keep the participant challenge brief; do not add a drafting workflow, worked derivation, or multiple required tests.
 
 ## Exercise 3 - Sales Order Exception Prioritizer
 
@@ -259,6 +261,8 @@ Location: `exercises/ex5/`
 
 Goal: independently define, build, test, and improve an original custom skill for a business use case and output of the participant's choice. This is not required for completing the two-hour core. A conversational response, analysis, or file can be a valid outcome.
 
+If time remains, participants can also explore Joule Work Desktop. Ask a facilitator for help configuring it before starting; this is optional and not required to complete the workshop.
+
 Participants define the purpose, success criteria, required inputs, output structure, validation, and missing-information behavior. They import the skill, compare its result with their own criteria, improve one aspect, and run it again.
 
 For a Microsoft Office artifact, participants must enable the corresponding `docx`, `pptx`, or `xlsx` skill and confirm it under **Active Skills**, together with any required business skill.
@@ -277,6 +281,7 @@ Confirm that:
 
 - A simple skill is selected as its `SKILL.md` file.
 - A skill with supporting files is selected as its complete unzipped folder.
+- The selected folder directly contains `SKILL.md`; it is not a parent exercise folder containing multiple skills. Exercise 1 needs separate imports for `broad-greeter/` and `workshop-greeter/`, not one upload of `ex1/`.
 - The folder name is lowercase and hyphenated.
 - `SKILL.md` is at the root of that folder; supporting files are at most one subfolder level below it.
 - The metadata `name` matches the folder name.

@@ -4,6 +4,16 @@
 
 Inspect and test a supplied skill that collects required inputs, validates them, and uses a bundled script for deterministic arithmetic. Notice what belongs in the instructions, script, and reference file.
 
+## Before You Start: Import and Enable the Skill
+
+1. Open **User menu > Explore Skills > Import**.
+2. Select the complete unzipped `exercises/ex2/gross-margin-calculator/` folder, including `SKILL.md`, `references/formulas.md`, and `scripts/calculate_margin.py`.
+3. Find `gross-margin-calculator` under **My Skills** and enable it. Disable both greeters from Exercise 1 and any competing custom skills. Confirm `gross-margin-calculator` under **Active Skills**.
+4. Start a new conversation and select **+ > Agentic Thinking** before running the base prompt below.
+
+> [!IMPORTANT]
+> **Select `gross-margin-calculator/`, not its parent `ex2/` folder.** The selected folder must directly contain `SKILL.md`. Import the complete folder, not only `SKILL.md`, `scripts/`, or `references/`, so the bundled script and reference are included. Do not ZIP the skill for import.
+
 ## Base prompt
 
 `Calculate gross margin for revenue 125000 EUR and cost 87500 EUR.`
@@ -33,16 +43,27 @@ When a required input is missing, the skill asks for it instead of inventing a v
 ## Participant steps
 
 1. Open `gross-margin-calculator/SKILL.md`, then its `references/formulas.md` and `scripts/calculate_margin.py`. Find the instruction that saves the inputs as JSON and calls the script. Notice how the reference provides the fallback rules; you do not need to understand every line of Python.
-2. Import the complete unzipped `gross-margin-calculator` folder in Joule Work.
-3. Enable the imported skill and disable both greeters from Exercise 1.
-4. Start a new conversation, select agentic thinking mode, and run the base prompt.
-5. Compare the result with the expected values.
-6. Run each clarification and edge prompt in its own fresh conversation and record the behavior.
-7. If Python execution is unavailable, confirm that the skill uses and discloses the formula fallback.
+2. Complete **Before You Start** above, then run the base prompt in a new **Agentic Thinking** conversation.
+3. Compare the result with the expected values.
+4. Run each clarification and edge prompt in its own fresh conversation and record the behavior.
+5. If Python execution is unavailable, confirm that the skill uses and discloses the formula fallback.
 
 ## Optional extension: target margin
 
-Add a target-margin input and use the reference formula to calculate required revenue at the current cost. Validate that the target is below 100 percent, keep decimal half-up rounding, and label the extension result separately from the base output. Replace the imported skill using the [shared replacement procedure](../../README.md#replacing-an-imported-skill), then test your change.
+**Quick challenge:** how much revenue would you need for a 35% gross margin, keeping cost unchanged? No Python changes are needed.
+
+1. **Edit `gross-margin-calculator/SKILL.md`.** Add target-margin planning to its `description` and opening sentence. Replace the sentence beginning `The only additional text permitted` with:
+
+   ```text
+   Keep the base result and fallback disclosure. When target-margin planning is requested, ask for a missing target percentage; accept only numbers from 0% to below 100%. Use the target-revenue formula in references/formulas.md, rounding to two decimals (half-up). Add a Target Margin Planning section with target, unchanged cost, and required revenue. State that this uses the reference formula, not the base script.
+   ```
+
+2. **Save, [replace the imported copy](../../README.md#replacing-an-imported-skill), and enable it.** Import the complete `gross-margin-calculator/` folder.
+3. **Test in a new Agentic Thinking conversation:**
+
+   `Calculate gross margin for revenue 125000 EUR and cost 87500 EUR. Also calculate required revenue for a 35% target gross margin at the same cost.`
+
+   **Check:** current margin stays **30.00%**; target required revenue is **134615.38 EUR** in a separate section.
 
 ## Summary
 
