@@ -71,24 +71,14 @@ Use this table to compare both skills:
 | Name handling | Uses the supplied name and asks when it is missing. |
 | Workshop overview | Exactly six bullets, one for each exercise: 0 readiness; 1 compare and improve; 2 calculator inspection/testing; 3 synthetic order scoring; 4 build one business report; 5 optional freestyle. |
 | Scope | Exercise 0 is setup, Exercises 1-4 are core, and Exercise 5 is optional/take-home. Live retrieval in Exercise 3 is optional. |
-| Style | Plain language, no emoji, and no em or en dashes. Use colons or full stops after labels. |
+| Style | Plain language and no em or en dashes.|
 | Ending | Uses the specified closing sentence below. |
 | Length | Stays under 120 words. |
 
-If Joule shows the selected skill, note it; otherwise record `Not visible` and compare the responses only. Optionally repeat one prompt with each skill to check consistency.
 
 The required closing sentence for comparison is: `Start with the smallest reliable skill, then add complexity one controlled step at a time.`
 
 The recommended skill should describe all six exercises, mark the optional work, and use the exact closing sentence. Compare it with the earlier `broad-greeter` responses rather than relying on competition between enabled skills to expose a difference.
-
-<details>
-<summary>Earlier greeting example, before the six-exercise update</summary>
-
-This historical capture shows the previous three-level outline. It illustrates the greeting and closing sentence only; use the current six-exercise and style checklist above when testing. A three-level overview or em dashes do not meet the updated reference contract.
-
-![Earlier workshop greeting using the previous three-level outline](images/01-03-workshop-greeting-result.png)
-
-</details>
 
 > [!NOTE]
 > **Selection is not deterministic**

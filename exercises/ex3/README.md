@@ -2,7 +2,7 @@
 
 ## Goal
 
-Run deterministic scoring on a supplied synthetic CSV, then explain one result. Authorized SAP data retrieval is an optional extension after facilitator confirmation. The custom skill processes data locally; it cannot connect directly to SAP S/4HANA.
+Run deterministic scoring on a supplied synthetic CSV, then explain one result. Explore and test this skill to see how it makes use of business data.
 
 ## 1. Set up the skill
 
@@ -63,12 +63,12 @@ The raw **50000** threshold is applied separately in each record's currency. Thi
 
 If script execution is unavailable, stop the execution path and use the rules and expected fixture results above for a **reference-only walkthrough**. Do not claim the script ran, fabricate a ranked CSV, or present the reference totals as newly computed results. Ask the facilitator for a supported runtime if you want to complete an executed run.
 
-## Optional: facilitator-confirmed live path
+## Optional: Use the skill with live S/4HANA Data
 
 <details>
 <summary>Explore live retrieval after completing the core CSV path</summary>
 
-Attempt this only after the facilitator confirms the exact SAP-published capability, authorization, usable fields and status meanings, server-side count/filter/sort/limit support, data handoff, and script runtime in this tenant. Enable that SAP-published skill as well as the custom skill and confirm both under **Active Skills** in **Agentic Thinking**.
+For this exercise,enable `SAP S/4HANA Cloud Public Edition` as well as the custom skill and confirm both under **Active Skills** in **Agentic Thinking**.
 
 Prompt:
 
@@ -76,11 +76,6 @@ Prompt:
 
 The skill first counts authorized, incomplete orders with requested delivery dates from **2026-09-07 through 2026-10-14**, inclusive. It retrieves at most **50** matching orders, sorted by requested delivery date descending and sales order ascending **before** the limit is applied. If more than 50 match, Joule should state that briefly and continue without asking for confirmation. It shows the 10 highest-ranked results and discloses matching versus analyzed counts. Do not retrieve more pages or retry after a retrieval error.
 
-Live data uses **current statuses**. The analysis date anchors scoring and the retrieval window; it does **not** reconstruct a historical snapshot. Only the fixed fixture guarantees the same results.
-
-Live delivery-status codes must be mapped using qualified meanings for the exact field and tenant. Do not infer raw SAP status mappings or treat an unrecognized status as incomplete. If the mapping or required filter cannot be qualified, stop and ask the facilitator for clarification or use the CSV path.
-
-For live data, `TotalCreditCheckStatus` is a tenant code-list value, not a Boolean. Retrieve the code-list text for the exact value before mapping it to `credit_block`. Never guess from a raw code such as `D`, borrow a mapping from another SAP field, or treat every nonempty value as blocked. Unresolved or conflicting values remain `unknown` and receive no credit-block points; report them separately. `TotalBlockStatus` is a consistency check, not a way to identify credit blockage.
 
 ### Example live result
 
@@ -104,21 +99,6 @@ When a ranked CSV is available, download and open it to inspect the full analyze
 
 </details>
 
-## Troubleshooting
-
-| Problem | Action |
-| --- | --- |
-| No qualified SAP capability or insufficient authorization | Do not broaden access. Use the synthetic CSV. |
-| Capability cannot count, filter, sort, or limit before retrieval | Do not analyze an arbitrary first page. Use the synthetic CSV. |
-| Retrieval error, partial data, or truncated response | Stop; do not retry, switch services, or fetch more pages. Use the CSV path. | 
-
-## Optional extensions
-
-- Change the high-value threshold and explain which priorities change.
-- Add an `owner` column and group the action list by owner.
-- Retain the generated ranked CSV as a downloadable result.
-
-After changing the source, follow [Replacing an imported skill](../../README.md#replacing-an-imported-skill) and retest in a new Agentic Thinking conversation with the same CSV and analysis date.
 
 ## Summary
 

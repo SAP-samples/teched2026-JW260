@@ -157,7 +157,7 @@ Run each case in its own new Agentic Thinking conversation; answer any clarifica
 
 If bundled script execution is unavailable, the calculator uses the rules in its bundled `references/formulas.md` and states that the formula fallback was used. The repository path is `exercises/ex2/gross-margin-calculator/references/formulas.md`; that file is not bundled with this guide. Its formulas are gross profit = revenue - cost and gross margin percent = (revenue - cost) / revenue * 100, with two-decimal half-up rounding and undefined margin at zero revenue. Negative revenue/cost are rejected and currencies must match.
 
-The optional target-margin extension adds an input below 100 percent and calculates required revenue = cost / (1 - target margin percent / 100). Label it separately from the base output, replace the edited skill, and retest. This is not a required part of the core calculator exercise.
+The optional target-margin extension has three steps: edit `SKILL.md`, replace and enable the imported complete folder, then run one test in a fresh Agentic Thinking conversation. Add target-margin planning to the description and opening sentence; replace the sentence beginning `The only additional text permitted` with the README's short instruction block. The formula already exists in `references/formulas.md`; no Python or reference edits are needed. Preserve the base result and fallback disclosure; validate a requested numeric target from 0% to below 100%, ask if missing, use the target-revenue formula with two-decimal half-up rounding, and label the extra formula-based result separately from the script result. Test: `Calculate gross margin for revenue 125000 EUR and cost 87500 EUR. Also calculate required revenue for a 35% target gross margin at the same cost.` Expect current margin 30.00% and target required revenue 134615.38 EUR. Keep the participant challenge brief; do not add a drafting workflow, worked derivation, or multiple required tests.
 
 ## Exercise 3 - Sales Order Exception Prioritizer
 
@@ -260,6 +260,8 @@ Only after building and testing their own skill may participants optionally impo
 Location: `exercises/ex5/`
 
 Goal: independently define, build, test, and improve an original custom skill for a business use case and output of the participant's choice. This is not required for completing the two-hour core. A conversational response, analysis, or file can be a valid outcome.
+
+If time remains, participants can also explore Joule Work Desktop. Ask a facilitator for help configuring it before starting; this is optional and not required to complete the workshop.
 
 Participants define the purpose, success criteria, required inputs, output structure, validation, and missing-information behavior. They import the skill, compare its result with their own criteria, improve one aspect, and run it again.
 
